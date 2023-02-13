@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import AuthLayout from '../../../components/AuthLayout';
-import { RegisterButton } from '../../../components/RegisterButton';
-import { WriteDownContainer } from '../../../components/WriteDownContainer';
+import { AuthLayout, RegisterButton, WriteDownContainer } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
 
 import icon from '../../../public/static/QuoteApp.png';
