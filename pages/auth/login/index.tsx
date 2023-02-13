@@ -1,10 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import { AuthLayout, LoginButton, SocialLoginButton, WriteDownContainer, FormHeader } from '../../../components';
+import { AuthLayout, LoginButton, SocialLoginButton, WriteDownContainer, FormHeader, QuoteAppIcon } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
-
-import icon from '../../../public/static/QuoteApp.png';
 
 const Login = () => {
     const [ inputRef ] = useFocus();
@@ -14,15 +11,7 @@ const Login = () => {
             <div className="flex items-center justify-center py-4 px-2 h-screen">
                 <WriteDownContainer />
                 <section className='flex flex-col h-full justify-center my-4 mx-10 border-r-5 border-gray-500'>
-                    <div className='flex w-full justify-center items-start'>
-                        <Image 
-                            className='flex items-center'
-                            src={icon} 
-                            alt="Quote App Icon" 
-                            width={60} 
-                            height={60} 
-                        />
-                    </div>
+                    <QuoteAppIcon />
                     <FormHeader title="Hey, hello!!" subtitle="Entre com os dados informados quando você se registrou..." />
                     <div>
                         <form>
