@@ -1,10 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import AuthLayout from '../../../components/AuthLayout';
-import { LoginButton } from '../../../components/LoginButton';
-import { SocialLoginButton } from '../../../components/SocialLoginButton';
-import { WriteDownContainer } from '../../../components/WriteDownContainer';
+import { AuthLayout, LoginButton, SocialLoginButton, WriteDownContainer } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
 
 import icon from '../../../public/static/QuoteApp.png';
