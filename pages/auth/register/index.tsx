@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import { AuthLayout, RegisterButton, WriteDownContainer, FormHeader, QuoteAppIcon } from '../../../components';
+import { AuthLayout, RegisterButton, WriteDownContainer, FormHeader, QuoteAppIcon, EmailInput } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
-
 
 const Register = () => {
     const [ inputRef ] = useFocus();
@@ -15,10 +14,7 @@ const Register = () => {
                     <FormHeader title="Crie sua conta!!" subtitle="Será rápido e fácil..." />
                     <div>
                         <form>
-                            <div className='flex flex-col justify-center my-2'>
-                                <label className='text-sm font-bold' htmlFor="email">Email</label>
-                                <input type="email" name="email" id="email" ref={inputRef} className="rounded w-full px-2 py-1 shadow-lg text-black" />
-                            </div>
+                            <EmailInput inputRef={inputRef} />
                             <div className='flex flex-col justify-center my-2'>
                                 <label className='text-sm font-bold' htmlFor="password">Senha</label>
                                 <input type="password" name="password" id="password" className="rounded w-full px-2 py-1 shadow-lg text-black" />
