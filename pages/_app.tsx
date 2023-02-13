@@ -8,7 +8,7 @@ import { Nunito_Sans } from '@next/font/google'
 
 const nunito = Nunito_Sans({ 
   subsets: ['latin'],
-  weight: ['900', '700', '600', '400', '200'],
+  weight: ['200', '400', '600', '700', '900'],
   variable: '--font-nunito',
 });
 
