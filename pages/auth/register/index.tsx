@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import { AuthLayout, RegisterButton, WriteDownContainer } from '../../../components';
+import { AuthLayout, RegisterButton, WriteDownContainer, FormHeader } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
 
 import icon from '../../../public/static/QuoteApp.png';
@@ -22,10 +22,7 @@ const Register = () => {
                             height={60} 
                         />
                     </div>
-                    <div className='py-4 mt-4'>
-                        <h1 className="text-6xl font-black">Crie sua conta!!</h1>
-                        <h2 className="text-2xl font-semibold mt-1">Será rápido e fácil...</h2>
-                    </div>
+                    <FormHeader title="Crie sua conta!!" subtitle="Será rápido e fácil..." />
                     <div>
                         <form>
                             <div className='flex flex-col justify-center my-2'>
