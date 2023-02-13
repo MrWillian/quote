@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
 import AuthLayout from '../../../components/AuthLayout';
 import { RegisterButton } from '../../../components/RegisterButton';
-import { SocialLoginButton } from '../../../components/SocialLoginButton';
 import { WriteDownContainer } from '../../../components/WriteDownContainer';
 import { useFocus } from '../../../hooks/useFocus';
 
@@ -13,10 +12,10 @@ const Register = () => {
     const [ inputRef ] = useFocus();
 
     return (
-        <AuthLayout title="Login | Quote App">
+        <AuthLayout title="Register | Quote App">
             <div className="flex items-center justify-center py-4 px-2 h-screen">
                 <section className='flex flex-col h-full justify-center my-4 mx-10 border-r-5 border-gray-500'>
-                    <div className='flex w-full items-start'>
+                    <div className='flex w-full justify-center items-center'>
                         <Image 
                             className='flex items-center'
                             src={icon} 
