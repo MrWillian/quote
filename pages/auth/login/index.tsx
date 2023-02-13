@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import { AuthLayout, LoginButton, SocialLoginButton, WriteDownContainer, FormHeader, QuoteAppIcon } from '../../../components';
+import { AuthLayout, LoginButton, SocialLoginButton, WriteDownContainer, FormHeader, QuoteAppIcon, EmailInput } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
 
 const Login = () => {
@@ -15,10 +15,7 @@ const Login = () => {
                     <FormHeader title="Hey, hello!!" subtitle="Entre com os dados informados quando você se registrou..." />
                     <div>
                         <form>
-                            <div className='flex flex-col justify-center my-2'>
-                                <label className='text-sm font-bold' htmlFor="email">Email</label>
-                                <input type="email" name="email" ref={inputRef} className="rounded w-full px-2 py-1 shadow-lg text-black" />
-                            </div>
+                            <EmailInput inputRef={inputRef} />
                             <div className='flex flex-col justify-center my-2'>
                                 <label className='text-sm font-bold' htmlFor="password">Senha</label>
                                 <input type="password" name="password" className="rounded w-full px-2 py-1 shadow-lg text-black" />
