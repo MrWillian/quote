@@ -5,10 +5,13 @@ import AuthLayout from '../../../components/AuthLayout';
 import { LoginButton } from '../../../components/LoginButton';
 import { SocialLoginButton } from '../../../components/SocialLoginButton';
 import { WriteDownContainer } from '../../../components/WriteDownContainer';
+import { useFocus } from '../../../hooks/useFocus';
 
 import icon from '../../../public/static/QuoteApp.png';
 
 const Login = () => {
+    const [ inputRef ] = useFocus();
+
     return (
         <AuthLayout title="Login | Quote App">
             <div className="flex items-center justify-center py-4 px-2 h-screen">
@@ -31,7 +34,7 @@ const Login = () => {
                         <form>
                             <div className='flex flex-col justify-center my-2'>
                                 <label className='text-sm font-bold' htmlFor="email">Email</label>
-                                <input type="email" name="email" className="rounded w-full px-2 py-1 shadow-lg text-black" />
+                                <input type="email" name="email" ref={inputRef} className="rounded w-full px-2 py-1 shadow-lg text-black" />
                             </div>
                             <div className='flex flex-col justify-center my-2'>
                                 <label className='text-sm font-bold' htmlFor="password">Senha</label>
