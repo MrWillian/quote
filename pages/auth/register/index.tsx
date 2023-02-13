@@ -1,10 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import { AuthLayout, RegisterButton, WriteDownContainer, FormHeader } from '../../../components';
+import { AuthLayout, RegisterButton, WriteDownContainer, FormHeader, QuoteAppIcon } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
 
-import icon from '../../../public/static/QuoteApp.png';
 
 const Register = () => {
     const [ inputRef ] = useFocus();
@@ -13,15 +11,7 @@ const Register = () => {
         <AuthLayout title="Register | Quote App">
             <div className="flex items-center justify-center py-4 px-2 h-screen">
                 <section className='flex flex-col h-full justify-center my-4 mx-10 border-r-5 border-gray-500'>
-                    <div className='flex w-full justify-center items-center'>
-                        <Image 
-                            className='flex items-center'
-                            src={icon} 
-                            alt="Quote App Icon" 
-                            width={60} 
-                            height={60} 
-                        />
-                    </div>
+                    <QuoteAppIcon />
                     <FormHeader title="Crie sua conta!!" subtitle="Será rápido e fácil..." />
                     <div>
                         <form>
