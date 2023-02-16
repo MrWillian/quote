@@ -1,10 +1,6 @@
-type Props = {
-    value?: string,
-    onChange?: React.ChangeEventHandler<HTMLInputElement>,
-    inputRef?: React.LegacyRef<HTMLInputElement>
-}
+import { InputProps } from "../../interfaces/types";
 
-export const EmailInput = ({ value, onChange, inputRef }: Props) => (
+export const EmailInput = ({ value, onChange, inputRef }: InputProps) => (
     <div className='flex flex-col justify-center my-2'>
         <label className='text-sm font-bold' htmlFor="email">Email</label>
         <input 
