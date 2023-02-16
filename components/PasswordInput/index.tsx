@@ -1,9 +1,6 @@
-type Props = {
-    value?: string,
-    onChange?: React.ChangeEventHandler<HTMLInputElement>,
-}
+import { InputProps } from "../../interfaces/types";
 
-export const PasswordInput = ({ value, onChange }: Props) => (
+export const PasswordInput = ({ value, onChange }: InputProps) => (
     <div className='flex flex-col justify-center my-2'>
         <label className='text-sm font-bold' htmlFor="password">Senha</label>
         <input 
