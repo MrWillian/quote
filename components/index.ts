@@ -1,6 +1,7 @@
 import { Button } from './Button';
 import { SocialLoginButton } from './SocialLoginButton';
 import { WriteDownContainer } from './WriteDownContainer';
+import { ConfirmationContainer } from './ConfirmationContainer';
 import { FormHeader } from './FormHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
 import { EmailInput } from './EmailInput';
@@ -12,6 +13,7 @@ export {
     Button,
     SocialLoginButton,
     WriteDownContainer,
+    ConfirmationContainer,
     FormHeader,
     QuoteAppIcon,
     EmailInput,
