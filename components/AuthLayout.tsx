@@ -15,7 +15,9 @@ const AuthLayout = ({ children, title = 'Quote App' }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="shortcut icon" href={favicon.src} />
     </Head>
-    {children}
+    <div className="grid h-screen place-items-center">
+      {children}
+    </div>
   </div>
 )
 
