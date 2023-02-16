@@ -4,15 +4,16 @@ import { useState } from 'react';
 import { FcRight } from 'react-icons/fc';
 import { 
     AuthLayout,
-    RegisterButton,
     WriteDownContainer,
     FormHeader,
     QuoteAppIcon,
     EmailInput,
-    PasswordInput
+    PasswordInput,
+    Button
 } from '../../../components';
 import userPool from '../../../config/userPool';
 import { useFocus } from '../../../hooks/useFocus';
+import { ButtonType } from '../../../interfaces/enums';
 
 const Register = () => {
     const [ givenName, setGivenName ] = useState<string>('');
@@ -61,6 +62,7 @@ const Register = () => {
                             <div className='flex flex-col justify-center my-2'>
                                 <label className='text-sm font-bold' htmlFor="given_name">Nome</label>
                                 <input 
+                                    ref={inputRef}
                                     value={givenName} 
                                     onChange={(event) => setGivenName(event.target.value)} 
                                     type="text" 
@@ -69,8 +71,7 @@ const Register = () => {
                                     className="rounded w-full px-2 py-1 shadow-lg text-black" 
                                 />
                             </div>
-                            <EmailInput 
-                                inputRef={inputRef} 
+                            <EmailInput                                  
                                 value={email} 
                                 onChange={(event) => setEmail(event.target.value)} 
                             />
@@ -90,7 +91,7 @@ const Register = () => {
                                 />
                             </div>
                             <br />
-                            <RegisterButton />
+                            <Button buttonType={ButtonType.Register} />
                             <Link href="/auth/login" className='flex items-center my-2'>
                                 <span className='text-sm underline font-extralight mr-1'>
                                     Já tem uma conta? Faça Login...
