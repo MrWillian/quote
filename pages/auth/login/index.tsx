@@ -1,10 +1,47 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
-import { AuthLayout, LoginButton, SocialLoginButton, WriteDownContainer, FormHeader, QuoteAppIcon, EmailInput, PasswordInput } from '../../../components';
+import { 
+    AuthLayout,
+    LoginButton,
+    SocialLoginButton,
+    WriteDownContainer,
+    FormHeader,
+    QuoteAppIcon,
+    EmailInput,
+    PasswordInput
+} from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
+import userPool from '../../../config/userPool';
+import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 
 const Login = () => {
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
     const [ inputRef ] = useFocus();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const user = new CognitoUser({ Username: email, Pool: userPool });
+
+        const authDetails = new AuthenticationDetails({
+            Username: email,
+            Password: password,
+        });
+
+        user.authenticateUser(authDetails, {
+            onSuccess: (data) => {
+                console.log('onSuccess: ', data);
+            },
+            onFailure: (err) => {
+                console.error('onFailure: ', err);
+            },
+            newPasswordRequired: (data) => {
+                console.log('newPasswordRequired: ', data);
+            },
+        });
+    }
 
     return (
         <AuthLayout title="Login | Quote App">
@@ -12,11 +49,21 @@ const Login = () => {
                 <WriteDownContainer />
                 <section className='flex flex-col h-full justify-center my-4 mx-10 border-r-5 border-gray-500'>
                     <QuoteAppIcon />
-                    <FormHeader title="Hey, hello!!" subtitle="Entre com os dados informados quando você se registrou..." />
+                    <FormHeader 
+                        title="Hey, hello!!" 
+                        subtitle="Entre com os dados informados quando você se registrou..."
+                    />
                     <div>
-                        <form>
-                            <EmailInput inputRef={inputRef} />
-                            <PasswordInput />
+                        <form onSubmit={handleSubmit}>
+                            <EmailInput 
+                                inputRef={inputRef} 
+                                value={email} 
+                                onChange={(event) => setEmail(event.target.value)}
+                            />
+                            <PasswordInput 
+                                value={password} 
+                                onChange={(event) => setPassword(event.target.value)}
+                            />
                             <div className="flex justify-between items-center mb-6">
                                 <div className="items-center flex">
                                     <input type="checkbox" id="rememberme" name="rememberme" />
