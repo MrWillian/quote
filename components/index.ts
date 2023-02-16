@@ -1,5 +1,4 @@
-import { LoginButton } from './LoginButton';
-import { RegisterButton } from './RegisterButton';
+import { Button } from './Button';
 import { SocialLoginButton } from './SocialLoginButton';
 import { WriteDownContainer } from './WriteDownContainer';
 import { FormHeader } from './FormHeader';
@@ -10,5 +9,13 @@ import Layout from './Layout';
 import AuthLayout from './AuthLayout';
 
 export {
-    LoginButton, RegisterButton, SocialLoginButton, WriteDownContainer, FormHeader, QuoteAppIcon, EmailInput, PasswordInput, Layout, AuthLayout
+    Button,
+    SocialLoginButton,
+    WriteDownContainer,
+    FormHeader,
+    QuoteAppIcon,
+    EmailInput,
+    PasswordInput,
+    Layout,
+    AuthLayout
 };
