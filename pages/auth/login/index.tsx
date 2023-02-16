@@ -3,17 +3,18 @@ import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
 import { 
     AuthLayout,
-    LoginButton,
     SocialLoginButton,
     WriteDownContainer,
     FormHeader,
     QuoteAppIcon,
     EmailInput,
-    PasswordInput
+    PasswordInput,
+    Button
 } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
 import userPool from '../../../config/userPool';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import { ButtonType } from '../../../interfaces/enums';
 
 const Login = () => {
     const [ email, setEmail ] = useState('');
@@ -73,7 +74,7 @@ const Login = () => {
                                     <a href="#" className='text-sm underline font-extralight'>Esqueceu a senha?</a>
                                 </div>
                             </div>
-                            <LoginButton />
+                            <Button buttonType={ButtonType.Login} />
                             <hr className='my-4' />
                             <SocialLoginButton />
                             <Link href="/auth/register" className='flex items-center my-2'>
