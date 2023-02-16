@@ -1,7 +1,7 @@
 type Props = {
     value?: string,
     onChange?: React.ChangeEventHandler<HTMLInputElement>,
-    inputRef: any
+    inputRef?: React.LegacyRef<HTMLInputElement>
 }
 
 export const EmailInput = ({ value, onChange, inputRef }: Props) => (
