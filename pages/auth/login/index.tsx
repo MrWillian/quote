@@ -12,35 +12,21 @@ import {
     Button
 } from '../../../components';
 import { useFocus } from '../../../hooks/useFocus';
-import userPool from '../../../config/userPool';
-import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import { ButtonType } from '../../../interfaces/enums';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const Login = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const auth = useAuth();
     const [ inputRef ] = useFocus();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const user = new CognitoUser({ Username: email, Pool: userPool });
-
-        const authDetails = new AuthenticationDetails({
-            Username: email,
-            Password: password,
-        });
-
-        user.authenticateUser(authDetails, {
-            onSuccess: (data) => {
-                console.log('onSuccess: ', data);
-            },
-            onFailure: (err) => {
-                console.error('onFailure: ', err);
-            },
-            newPasswordRequired: (data) => {
-                console.log('newPasswordRequired: ', data);
-            },
+        auth.login(email, password).then((data) => {
+            console.log("Logged in!", data);
+        }).catch((error) => {
+            console.error("Failed to login!", error);
         });
     }
 
