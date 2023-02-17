@@ -1,17 +1,19 @@
 import { createContext, ReactNode, useContext } from "react";
-import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
+import { AuthenticationDetails, CognitoUser, CognitoUserAttribute } from "amazon-cognito-identity-js";
 import Pool from '../config/userPool';
 
 type authContextType = {
     login: (Username: string, Password: string) => Promise<unknown>;
-    getSession: () => Promise<unknown>;
     logout: () => void;
+    signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
+    getSession: () => Promise<unknown>;
 };
 
 const authContextDefaultValues: authContextType = {
     login: () => null,
-    getSession: () => null,
     logout: () => {},
+    signUp: () => null,
+    getSession: () => null,
 };
 
 const AuthContext = createContext<authContextType>(authContextDefaultValues);
@@ -71,7 +73,18 @@ export function AuthProvider({ children }: Props) {
         }
     };
 
-    const value = { login, logout, getSession };
+    const signUp = async (email: string, password: string, userAttributes: CognitoUserAttribute[]) => {
+        return await new Promise((resolve, reject) => {    
+            Pool.signUp(email, password, userAttributes, null, (err, data) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(data);
+            })
+        });
+    }
+
+    const value = { login, logout, getSession, signUp };
 
     return (
         <>
