@@ -1,4 +1,4 @@
-import { CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import Link from 'next/link';
 import { useState } from 'react';
 import { FcRight } from 'react-icons/fc';
@@ -11,16 +11,19 @@ import {
     PasswordInput,
     Button
 } from '../../../components';
-import userPool from '../../../config/userPool';
 import { useFocus } from '../../../hooks/useFocus';
 import { ButtonType } from '../../../interfaces/enums';
+import { useRouter } from 'next/router';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const Register = () => {
     const [ givenName, setGivenName ] = useState<string>('');
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
     const [ confirmPassword, setConfirmPassword ] = useState<string>('');
+    const router = useRouter();
     const [ inputRef ] = useFocus();
+    const { signUp } = useAuth();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -31,24 +34,12 @@ const Register = () => {
             Name: 'email', Value: email 
         });
 
-        let cognitoUser = new CognitoUser({ Username: email, Pool: userPool });
-
-        userPool.signUp(email, password, [givenNameAttribute, emailAttribute], null, (err, data) => {
-            if (err) {
-                console.log(err);
-            }
-
-            cognitoUser.verifyAttribute("email", "", {
-                onSuccess: (data) => {
-                    console.log('onSuccess: ', data);
-                },
-                onFailure: (err) => {
-                    console.error('onFailure: ', err);
-                }
-            });
-
-            console.log(data);
-        })
+        signUp(email, password, [givenNameAttribute, emailAttribute]).then((data) => {
+            console.log("Success", data);
+            router.push('/auth/confirm');
+        }).catch((error) => {
+            console.error("Error", error);
+        });
     }
 
     return (
