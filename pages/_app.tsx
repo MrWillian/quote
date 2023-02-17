@@ -6,6 +6,7 @@ import '../styles/index.css';
 
 import { Nunito_Sans } from '@next/font/google'
 import { AuthProvider } from '../contexts/AuthContext';
+import { CodeConfirmationProvider } from '../contexts/CodeContext';
 
 const nunito = Nunito_Sans({ 
   subsets: ['latin'],
@@ -17,9 +18,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <AuthProvider>
-        <main className={`${nunito.variable} font-sans`}>
-          <Component {...pageProps} />
-        </main>
+        <CodeConfirmationProvider>
+          <main className={`${nunito.variable} font-sans`}>
+            <Component {...pageProps} />
+          </main>
+        </CodeConfirmationProvider>
       </AuthProvider>
     </SessionProvider>
   );
