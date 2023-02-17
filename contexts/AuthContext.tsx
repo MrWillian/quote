@@ -7,6 +7,7 @@ type authContextType = {
     logout: () => void;
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
     getSession: () => Promise<unknown>;
+    confirmCode: (attribute: string, email: string, confirmationCode: string) => Promise<unknown>;
 };
 
 const authContextDefaultValues: authContextType = {
@@ -14,6 +15,7 @@ const authContextDefaultValues: authContextType = {
     logout: () => {},
     signUp: () => null,
     getSession: () => null,
+    confirmCode: () => null,
 };
 
 const AuthContext = createContext<authContextType>(authContextDefaultValues);
@@ -84,7 +86,24 @@ export function AuthProvider({ children }: Props) {
         });
     }
 
-    const value = { login, logout, getSession, signUp };
+    const confirmCode = async (attribute = 'email', email: string, confirmationCode: string) => {
+        const user = new CognitoUser({ Username: email, Pool });
+
+        return await new Promise((resolve, reject) => {
+            user.verifyAttribute(attribute, confirmationCode, {
+                onSuccess: (data) => {
+                    console.log('onSuccess: ', data);
+                    resolve(data);
+                },
+                onFailure: (err) => {
+                    console.error('onFailure: ', err);
+                    reject(err);
+                }
+            });
+        });
+    }
+
+    const value = { login, logout, getSession, signUp, confirmCode };
 
     return (
         <>
