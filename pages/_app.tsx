@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 import '../styles/index.css';
 
 import { Nunito_Sans } from '@next/font/google'
+import { AuthProvider } from '../contexts/AuthContext';
 
 const nunito = Nunito_Sans({ 
   subsets: ['latin'],
@@ -15,9 +16,11 @@ const nunito = Nunito_Sans({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
-      <main className={`${nunito.variable} font-sans`}>
-        <Component {...pageProps} />
-      </main>
+      <AuthProvider>
+        <main className={`${nunito.variable} font-sans`}>
+          <Component {...pageProps} />
+        </main>
+      </AuthProvider>
     </SessionProvider>
   );
 }
