@@ -18,12 +18,12 @@ import { useAuth } from '../../../contexts/AuthContext';
 const Login = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const auth = useAuth();
+    const { login } = useAuth();
     const [ inputRef ] = useFocus();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        auth.login(email, password).then((data) => {
+        login(email, password).then((data) => {
             console.log("Logged in!", data);
         }).catch((error) => {
             console.error("Failed to login!", error);
