@@ -1,18 +1,19 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { AuthenticationDetails, CognitoUser, CognitoUserAttribute } from "amazon-cognito-identity-js";
 import Pool from '../config/userPool';
 import { User } from "../interfaces";
+import { ChildrenProps } from "../interfaces/types";
 
-type authContextType = {
+type AuthContextType = {
     user: User;
     login: (Username: string, Password: string) => Promise<unknown>;
     logout: () => void;
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
     getSession: () => Promise<unknown>;
-    confirmCode: (attribute: string, email: string, confirmationCode: string) => Promise<unknown>;
+    confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
 };
 
-const authContextDefaultValues: authContextType = {
+const authContextDefaultValues: AuthContextType = {
     user: null,
     login: () => null,
     logout: () => {},
@@ -21,17 +22,13 @@ const authContextDefaultValues: authContextType = {
     confirmCode: () => null,
 };
 
-const AuthContext = createContext<authContextType>(authContextDefaultValues);
+const AuthContext = createContext<AuthContextType>(authContextDefaultValues);
 
 export function useAuth() {
     return useContext(AuthContext);
 }
 
-type Props = {
-    children: ReactNode;
-};
-
-export function AuthProvider({ children }: Props) {
+export function AuthProvider({ children }: ChildrenProps) {
     const [user, setUser] = useState({});
 
     const login = async (Username: string, Password: string) => {
@@ -96,19 +93,17 @@ export function AuthProvider({ children }: Props) {
         });
     }
 
-    const confirmCode = async (attribute = 'email', email: string, confirmationCode: string) => {
+    const confirmCode = async (email: string, confirmationCode: string) => {
         const user = new CognitoUser({ Username: email, Pool });
 
         return await new Promise((resolve, reject) => {
-            user.verifyAttribute(attribute, confirmationCode, {
-                onSuccess: (data) => {
-                    console.log('onSuccess: ', data);
-                    resolve(data);
-                },
-                onFailure: (err) => {
-                    console.error('onFailure: ', err);
-                    reject(err);
+            user.confirmRegistration(confirmationCode, false, (error, result) => {
+                if (error) {
+                    console.error('failure: ', error);
+                    reject(error);
                 }
+                console.log('success: ', result);
+                resolve(result);
             });
         });
     }
