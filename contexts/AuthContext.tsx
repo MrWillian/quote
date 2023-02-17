@@ -1,8 +1,10 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { AuthenticationDetails, CognitoUser, CognitoUserAttribute } from "amazon-cognito-identity-js";
 import Pool from '../config/userPool';
+import { User } from "../interfaces";
 
 type authContextType = {
+    user: User;
     login: (Username: string, Password: string) => Promise<unknown>;
     logout: () => void;
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
@@ -11,6 +13,7 @@ type authContextType = {
 };
 
 const authContextDefaultValues: authContextType = {
+    user: null,
     login: () => null,
     logout: () => {},
     signUp: () => null,
@@ -29,6 +32,8 @@ type Props = {
 };
 
 export function AuthProvider({ children }: Props) {
+    const [user, setUser] = useState({});
+
     const login = async (Username: string, Password: string) => {
         return new Promise((resolve, reject) => {
             const user = new CognitoUser({ Username, Pool });
@@ -81,8 +86,13 @@ export function AuthProvider({ children }: Props) {
                 if (err) {
                     reject(err);
                 }
+                const user = {
+                    name: userAttributes['given_name'],
+                    email: email
+                }
+                setUser(user);
                 resolve(data);
-            })
+            });
         });
     }
 
@@ -103,7 +113,7 @@ export function AuthProvider({ children }: Props) {
         });
     }
 
-    const value = { login, logout, getSession, signUp, confirmCode };
+    const value = { user, login, logout, getSession, signUp, confirmCode };
 
     return (
         <>
