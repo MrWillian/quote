@@ -1,7 +1,6 @@
 import { Button } from './Buttons/Button';
 import { SocialLoginButton } from './Buttons/SocialLoginButton';
-import { WriteDownContainer } from './Containers/WriteDownContainer';
-import { ConfirmationContainer } from './Containers/ConfirmationContainer';
+import { WriteDownContainer, ConfirmationContainer } from './Containers';
 import { FormHeader } from './FormHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
 import { EmailInput } from './Inputs/EmailInput';
