@@ -11,6 +11,7 @@ type AuthContextType = {
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
     getSession: () => Promise<unknown>;
     confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
+    getUserAttributes: () => Promise<unknown>;
 };
 
 const authContextDefaultValues: AuthContextType = {
@@ -20,6 +21,7 @@ const authContextDefaultValues: AuthContextType = {
     signUp: () => null,
     getSession: () => null,
     confirmCode: () => null,
+    getUserAttributes: () => null,
 };
 
 const AuthContext = createContext<AuthContextType>(authContextDefaultValues);
@@ -29,7 +31,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: ChildrenProps) {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<User>({});
 
     const login = async (Username: string, Password: string) => {
         return new Promise((resolve, reject) => {
@@ -39,6 +41,11 @@ export function AuthProvider({ children }: ChildrenProps) {
             user.authenticateUser(authDetails, {
                 onSuccess: (data) => {
                     console.log('onSuccess: ', data);
+                    const user = {
+                        email: Username
+                    }
+                    setUser(user);
+                    console.log('login user', user);
                     resolve(data);
                 },
                 onFailure: (err) => {
@@ -53,9 +60,24 @@ export function AuthProvider({ children }: ChildrenProps) {
         });
     };
 
-    const getSession = async () => {
+    const signUp = async (email: string, password: string, userAttributes: CognitoUserAttribute[]) => {
+        return await new Promise((resolve, reject) => {    
+            Pool.signUp(email, password, userAttributes, null, (err, data) => {
+                if (err) {
+                    reject(err);
+                }
+                const user = {
+                    name: userAttributes['given_name'],
+                    email: email
+                }
+                setUser(user);
+                resolve(data);
+            });
+        });
+    }
+
+    const getSession = async (user = Pool.getCurrentUser()) => {
         return await new Promise((resolve, reject) => {
-            const user = Pool.getCurrentUser();
             if (user) {
                 user.getSession((err, session) => {
                     if (err) {
@@ -77,22 +99,6 @@ export function AuthProvider({ children }: ChildrenProps) {
         }
     };
 
-    const signUp = async (email: string, password: string, userAttributes: CognitoUserAttribute[]) => {
-        return await new Promise((resolve, reject) => {    
-            Pool.signUp(email, password, userAttributes, null, (err, data) => {
-                if (err) {
-                    reject(err);
-                }
-                const user = {
-                    name: userAttributes['given_name'],
-                    email: email
-                }
-                setUser(user);
-                resolve(data);
-            });
-        });
-    }
-
     const confirmCode = async (email: string, confirmationCode: string) => {
         const user = new CognitoUser({ Username: email, Pool });
 
@@ -108,7 +114,22 @@ export function AuthProvider({ children }: ChildrenProps) {
         });
     }
 
-    const value = { user, login, logout, getSession, signUp, confirmCode };
+    const getUserAttributes = async () => {
+        const user = Pool.getCurrentUser();
+        getSession(user);
+        return await new Promise((resolve, reject) => {
+            user.getUserAttributes((error, result) => {
+                if (error) {
+                    console.error('failure: ', error);
+                    reject(error);
+                }
+                console.log('result: ', result);
+                resolve(result);
+            });
+        });
+    }
+
+    const value = { user, login, logout, getSession, signUp, confirmCode, getUserAttributes };
 
     return (
         <>
