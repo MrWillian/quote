@@ -1,5 +1,4 @@
-import { Button } from './Buttons/Button';
-import { SocialLoginButton } from './Buttons/SocialLoginButton';
+import { Button, SocialLoginButton } from './Buttons';
 import { WriteDownContainer, ConfirmationContainer } from './Containers';
 import { FormHeader } from './FormHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
