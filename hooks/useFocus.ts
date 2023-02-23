@@ -5,7 +5,7 @@ export const useFocus = () => {
     const setFocus = () => { htmlElRef.current && htmlElRef.current.focus() };
 
     useEffect(() => {
-        htmlElRef.current.focus();
+        if (htmlElRef) htmlElRef?.current.focus();
     }, []);
 
     return [ htmlElRef, setFocus ];
