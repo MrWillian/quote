@@ -1,5 +1,5 @@
-import { Button } from './Button';
-import { SocialLoginButton } from './SocialLoginButton';
+import { Button } from './Buttons/Button';
+import { SocialLoginButton } from './Buttons/SocialLoginButton';
 import { WriteDownContainer } from './WriteDownContainer';
 import { ConfirmationContainer } from './ConfirmationContainer';
 import { FormHeader } from './FormHeader';
