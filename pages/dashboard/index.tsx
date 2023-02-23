@@ -1,7 +1,7 @@
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import DashboardLayout from '../../components/DashboardLayout';
+import { DashboardLayout } from '../../components';
 import { useAuth } from "../../contexts/AuthContext";
 
 import art from '../../public/static/images/WriteDownBalloonArtwrite-down-baloon.png';

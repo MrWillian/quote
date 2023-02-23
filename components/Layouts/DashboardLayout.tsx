@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import Head from 'next/head';
 import favicon from '/public/favicon.ico';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from '../Sidebar';
 
 type Props = {
   children?: ReactNode

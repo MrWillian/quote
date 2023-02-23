@@ -6,8 +6,9 @@ import { FormHeader } from './FormHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
 import { EmailInput } from './EmailInput';
 import { PasswordInput } from './PasswordInput';
-import Layout from './Layout';
-import AuthLayout from './AuthLayout';
+import Layout from './Layouts/Layout';
+import AuthLayout from './Layouts/AuthLayout';
+import DashboardLayout from './Layouts/DashboardLayout';
 
 export {
     Button,
@@ -19,5 +20,6 @@ export {
     EmailInput,
     PasswordInput,
     Layout,
-    AuthLayout
+    AuthLayout,
+    DashboardLayout
 };
