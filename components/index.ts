@@ -3,9 +3,7 @@ import { WriteDownContainer, ConfirmationContainer } from './Containers';
 import { FormHeader } from './FormHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
 import { EmailInput, PasswordInput } from './Inputs';
-import Layout from './Layouts/Layout';
-import AuthLayout from './Layouts/AuthLayout';
-import DashboardLayout from './Layouts/DashboardLayout';
+import { Layout, AuthLayout, DashboardLayout } from './Layouts';
 
 export {
     Button,
