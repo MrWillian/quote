@@ -1,7 +1,7 @@
 import { Button } from './Buttons/Button';
 import { SocialLoginButton } from './Buttons/SocialLoginButton';
 import { WriteDownContainer } from './WriteDownContainer';
-import { ConfirmationContainer } from './ConfirmationContainer';
+import { ConfirmationContainer } from './Containers/ConfirmationContainer';
 import { FormHeader } from './FormHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
 import { EmailInput } from './Inputs/EmailInput';
