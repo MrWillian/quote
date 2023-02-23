@@ -1,10 +1,31 @@
-import React from 'react'
-import { AppProps } from 'next/app'
+import React from 'react';
+import { AppProps } from 'next/app';
+import { SessionProvider } from 'next-auth/react';
 
-import '../styles/index.css'
+import '../styles/index.css';
+
+import { Nunito_Sans } from '@next/font/google'
+import { AuthProvider } from '../contexts/AuthContext';
+import { CodeConfirmationProvider } from '../contexts/CodeContext';
+
+const nunito = Nunito_Sans({ 
+  subsets: ['latin'],
+  weight: ['200', '400', '600', '700', '900'],
+  variable: '--font-nunito',
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <SessionProvider session={pageProps.session}>
+      <AuthProvider>
+        <CodeConfirmationProvider>
+          <main className={`${nunito.variable} font-sans`}>
+            <Component {...pageProps} />
+          </main>
+        </CodeConfirmationProvider>
+      </AuthProvider>
+    </SessionProvider>
+  );
 }
 
 export default MyApp;
