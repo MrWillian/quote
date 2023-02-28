@@ -123,7 +123,6 @@ export function AuthProvider({ children }: ChildrenProps) {
                     console.error('failure: ', error);
                     reject(error);
                 }
-                console.log('result: ', result);
                 resolve(result);
             });
         });
