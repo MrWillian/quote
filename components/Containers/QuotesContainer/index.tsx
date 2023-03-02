@@ -12,7 +12,7 @@ export const QuotesContainer = () => {
     });
 
     return (
-        <div className="flex flex-col justify-start h-3/4 bg-accent-color rounded divide-y divide-gray-500 shadow-md">
+        <div className="flex flex-col justify-start no-scrollbar overflow-y-auto h-full bg-accent-color rounded divide-y divide-gray-500 shadow-md">
             {!isLoading ?
                 data !== undefined ? 
                     data?.map(quote => (
