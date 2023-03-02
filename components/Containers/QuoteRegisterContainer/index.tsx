@@ -15,7 +15,15 @@ let schema = object().shape({
 
 export const QuoteRegisterContainer = () => {
     const { getSub } = useAuth();
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({ mode: 'all', resolver: yupResolver(schema) });
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({ 
+        mode: 'all', 
+        resolver: yupResolver(schema),
+        defaultValues: {
+            title: '',
+            description: '',
+            date: new Date().toISOString().substr(0, 10)
+        }
+    });
 
     const onSubmit = async (fields: any) => {
         const sub = await getSub();
@@ -44,12 +52,14 @@ export const QuoteRegisterContainer = () => {
                         <input 
                             type="text" 
                             className={`text-xl text-black p-1 focus:outline-none ${errors.title && 'border-2 border-red-500'}`}
+                            placeholder="Defina um titúlo..."
                             {...register('title')}
                         />
                     </div>
                     <div className="flex flex-col my-2">
                         <label className="text-xl">Descrição</label>
                         <textarea 
+                            placeholder="Defina uma descrição..."
                             className={`text-xl text-black p-1 ${errors.description && 'border-2 border-red-500'}`}
                             {...register('description')}
                         />
