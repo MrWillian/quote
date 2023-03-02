@@ -24,7 +24,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex">
-                    <div className='w-3/4 md:w-2/4'>
+                    <div className='w-3/4 md:w-2/4 h-2/4'>
                         <div className="flex items-center justify-center my-6 w-full">
                             <form method="GET" className="w-full">
                                 <div className="relative text-gray-600 focus-within:text-gray-400">
