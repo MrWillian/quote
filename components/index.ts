@@ -1,4 +1,4 @@
-import { Button, SocialLoginButton } from './Buttons';
+import { Button, SocialLoginButton, SearchButton } from './Buttons';
 import { WriteDownContainer, ConfirmationContainer, QuotesContainer, QuoteRegisterContainer } from './Containers';
 import { FormHeader } from './FormHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
@@ -8,6 +8,7 @@ import { Layout, AuthLayout, DashboardLayout } from './Layouts';
 export {
     Button,
     SocialLoginButton,
+    SearchButton,
     WriteDownContainer,
     ConfirmationContainer,
     QuotesContainer,
