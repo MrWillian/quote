@@ -11,7 +11,6 @@ type AuthContextType = {
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
     getSession: () => Promise<unknown>;
     confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
-    getUserAttributes: () => Promise<unknown>;
     getSub: () => Promise<string>;
     getName: () => Promise<string>;
 };
@@ -23,7 +22,6 @@ const authContextDefaultValues: AuthContextType = {
     signUp: () => null,
     getSession: () => null,
     confirmCode: () => null,
-    getUserAttributes: () => null,
     getSub: () => null,
     getName: () => null,
 };
@@ -150,7 +148,7 @@ export function AuthProvider({ children }: ChildrenProps) {
         return name;
     }
 
-    const value = { user, login, logout, getSession, signUp, confirmCode, getUserAttributes, getSub, getName };
+    const value = { user, login, logout, getSession, signUp, confirmCode, getSub, getName };
 
     return (
         <>
