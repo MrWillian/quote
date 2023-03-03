@@ -1,15 +1,11 @@
-import { useQuery } from "react-query";
-import { useAuth } from "../../../contexts/AuthContext";
-import { Quote } from "../../../interfaces/types";
-import { getQuotesList } from "../../../lib/listQuotes";
+import { useQueryQuotes } from "../../../hooks/useQueryQuotes";
 
-export const QuotesContainer = () => {
-    const { getSub } = useAuth();
-    const { data, isLoading } = useQuery<Quote[]>('quotes', async () => {
-        const sub = await getSub();
-        const quotes = await getQuotesList(sub).then(result => result.data);
-        return quotes;
-    });
+type Props = {
+    filter?: string
+}
+
+export const QuotesContainer = ({ filter }: Props) => {
+    const { data, isLoading } = useQueryQuotes(filter);
 
     return (
         <div className="flex flex-col justify-start no-scrollbar overflow-y-auto h-full bg-accent-color rounded divide-y divide-gray-500 shadow-md">
@@ -29,10 +25,8 @@ export const QuotesContainer = () => {
                             </div>
                         </div>
                     ))
-                : 
-                    <h1 className="p-4">Ainda não há nenhuma recordação, escreva uma agora mesmo...</h1>
-                : 
-                    <p className="p-4">Carregando...</p>
+                : (<h1 className="p-4">Ainda não há nenhuma recordação, escreva uma agora mesmo...</h1>)
+                : (<p className="p-4">Carregando...</p>)
             }
         </div>
     );
