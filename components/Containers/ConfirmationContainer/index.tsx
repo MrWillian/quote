@@ -1,5 +1,5 @@
-import { useCodeConfirmation } from "../../contexts/CodeContext";
-import { useFocus } from "../../hooks/useFocus";
+import { useCodeConfirmation } from "../../../contexts/CodeContext";
+import { useFocus } from "../../../hooks/useFocus";
 import { CodeInput } from "./CodeInput";
 
 export const ConfirmationContainer = () => {

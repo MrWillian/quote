@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonType } from '../../interfaces/enums';
+import { ButtonType } from '../../../interfaces/enums';
 
 type Props = {
   buttonType: ButtonType

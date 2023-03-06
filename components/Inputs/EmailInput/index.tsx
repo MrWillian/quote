@@ -1,4 +1,4 @@
-import { InputProps } from "../../interfaces/types";
+import { InputProps } from "../../../interfaces/types";
 
 export const EmailInput = ({ value, onChange, inputRef }: InputProps) => (
     <div className='flex flex-col justify-center my-2'>

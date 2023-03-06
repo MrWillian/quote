@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import Head from 'next/head';
 import favicon from '/public/favicon.ico';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from '../Sidebar';
 
 type Props = {
   children?: ReactNode
@@ -16,7 +16,7 @@ const DashboardLayout = ({ children, title = 'Quote App' }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="shortcut icon" href={favicon.src} />
     </Head>
-    <div className="flex h-screen w-full">
+    <div className="flex h-screen w-full overflow-hidden">
       <Sidebar />
       {children}
     </div>
