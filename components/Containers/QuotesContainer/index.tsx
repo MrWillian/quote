@@ -15,7 +15,7 @@ export const QuotesContainer = ({ filter }: Props) => {
         containerRef.current?.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
             containerRef.current?.removeEventListener('scroll', handleScroll);
-        };        
+        };
     }, []);
 
     const handleScroll = () => {
