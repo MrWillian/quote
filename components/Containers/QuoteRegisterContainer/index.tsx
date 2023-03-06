@@ -66,7 +66,11 @@ export const QuoteRegisterContainer = () => {
                     </div>
                     <div className="flex flex-col my-2">
                         <label className="text-xl">Data</label>
-                        <input type="date" className="text-xl p-1 text-black focus:outline-none" {...register('date')} />
+                        <input 
+                            type="date" 
+                            className="text-xl p-1 text-black focus:outline-none" 
+                            {...register('date')}
+                        />
                     </div>
 
                     <div className="flex w-full justify-center items-center">
