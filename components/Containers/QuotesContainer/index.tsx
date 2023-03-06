@@ -6,7 +6,7 @@ type Props = {
 }
 
 export const QuotesContainer = ({ filter }: Props) => {
-    const { data, isLoading } = useQueryQuotes(filter);
+    const { data, isLoading, error } = useQueryQuotes(filter);
 
     const handleDelete = async (id: string) => {
         const result = await deleteQuote(id);
@@ -19,6 +19,8 @@ export const QuotesContainer = ({ filter }: Props) => {
             console.log(result.errorMessage);
         }
     }
+
+    if (error) alert('Ocorreu um erro ao tentar carregar as lembranças...');
 
     return (
         <div className="flex flex-col justify-start no-scrollbar overflow-y-auto h-full bg-accent-color rounded divide-y divide-gray-500 shadow-md">
