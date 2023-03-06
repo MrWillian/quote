@@ -1,4 +1,5 @@
 import { useQueryQuotes } from "../../../hooks/useQueryQuotes";
+import { deleteQuote } from "../../../lib/deleteQuote";
 
 type Props = {
     filter?: string
@@ -7,6 +8,18 @@ type Props = {
 export const QuotesContainer = ({ filter }: Props) => {
     const { data, isLoading } = useQueryQuotes(filter);
 
+    const handleDelete = async (id: string) => {
+        const result = await deleteQuote(id);
+        if (result.status === '200') {
+            alert('Sucesso ao tentar deletar...');
+        }
+
+        if (result.errorMessage) {
+            alert('Ocorreu um erro ao tentar deletar...');
+            console.log(result.errorMessage);
+        }
+    }
+
     return (
         <div className="flex flex-col justify-start no-scrollbar overflow-y-auto h-full bg-accent-color rounded divide-y divide-gray-500 shadow-md">
             {!isLoading ?
@@ -14,13 +27,13 @@ export const QuotesContainer = ({ filter }: Props) => {
                     data?.map(quote => (
                         <div className="flex justify-between hover:border-b-[1px]" key={quote.id}>
                             <div className='flex justify-center flex-col p-2'>
-                                <h1>{quote.title}</h1>
+                                <h1 className="text-xl font-black">{quote.title}</h1>
                                 <h3>{quote.description}</h3>
                             </div>
-                            <div className='flex flex-col p-2'>
+                            <div className='flex flex-col justify-center p-2'>
                                 <h3>{quote.date}</h3>
-                                <button className='bg-primary-color rounded shadow'>
-                                    Editar
+                                <button className='bg-primary-color rounded shadow' onClick={() => handleDelete(quote.id)}>
+                                    Excluir
                                 </button>
                             </div>
                         </div>
