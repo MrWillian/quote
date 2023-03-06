@@ -1,23 +1,25 @@
-import { Button } from './Button';
-import { SocialLoginButton } from './SocialLoginButton';
-import { WriteDownContainer } from './WriteDownContainer';
-import { ConfirmationContainer } from './ConfirmationContainer';
+import { Button, SocialLoginButton, SearchButton } from './Buttons';
+import { WriteDownContainer, ConfirmationContainer, QuotesContainer, QuoteRegisterContainer } from './Containers';
 import { FormHeader } from './FormHeader';
+import { DashboardHeader } from './DashboardHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
-import { EmailInput } from './EmailInput';
-import { PasswordInput } from './PasswordInput';
-import Layout from './Layout';
-import AuthLayout from './AuthLayout';
+import { EmailInput, PasswordInput } from './Inputs';
+import { Layout, AuthLayout, DashboardLayout } from './Layouts';
 
 export {
     Button,
     SocialLoginButton,
+    SearchButton,
     WriteDownContainer,
     ConfirmationContainer,
+    QuotesContainer,
+    QuoteRegisterContainer,
     FormHeader,
+    DashboardHeader,
     QuoteAppIcon,
     EmailInput,
     PasswordInput,
     Layout,
-    AuthLayout
+    AuthLayout,
+    DashboardLayout
 };

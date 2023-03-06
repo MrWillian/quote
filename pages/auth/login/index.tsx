@@ -14,16 +14,19 @@ import {
 import { useFocus } from '../../../hooks/useFocus';
 import { ButtonType } from '../../../interfaces/enums';
 import { useAuth } from '../../../contexts/AuthContext';
+import { useRouter } from 'next/router';
 
 const Login = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const router = useRouter();
     const { login } = useAuth();
     const [ inputRef ] = useFocus();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         login(email, password).then((data) => {
+            router.replace('/dashboard');
             console.log("Logged in!", data);
         }).catch((error) => {
             console.error("Failed to login!", error);
@@ -61,8 +64,8 @@ const Login = () => {
                                 </div>
                             </div>
                             <Button buttonType={ButtonType.Login} />
-                            <hr className='my-4' />
-                            <SocialLoginButton />
+                            {/* <hr className='my-4' /> */}
+                            {/* <SocialLoginButton /> */}
                             <Link href="/auth/register" className='flex items-center my-2'>
                                 <span className='text-sm underline font-extralight mr-1'>Precisa de uma conta?</span>
                                 <FcRight size={'1.5em'} color={'#282A37'} />
