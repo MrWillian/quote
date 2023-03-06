@@ -11,7 +11,8 @@ type AuthContextType = {
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
     getSession: () => Promise<unknown>;
     confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
-    getUserAttributes: () => Promise<unknown>;
+    getSub: () => Promise<string>;
+    getName: () => Promise<string>;
 };
 
 const authContextDefaultValues: AuthContextType = {
@@ -21,7 +22,8 @@ const authContextDefaultValues: AuthContextType = {
     signUp: () => null,
     getSession: () => null,
     confirmCode: () => null,
-    getUserAttributes: () => null,
+    getSub: () => null,
+    getName: () => null,
 };
 
 const AuthContext = createContext<AuthContextType>(authContextDefaultValues);
@@ -123,13 +125,30 @@ export function AuthProvider({ children }: ChildrenProps) {
                     console.error('failure: ', error);
                     reject(error);
                 }
-                console.log('result: ', result);
                 resolve(result);
             });
         });
     }
 
-    const value = { user, login, logout, getSession, signUp, confirmCode, getUserAttributes };
+    const getSub = async () => {
+        let sub: string = "";
+        await getUserAttributes()
+            .then((data: CognitoUserAttribute[]) => data.filter((element) => element.Name === 'sub'))
+            .then((element) => sub = element[0].Value)
+            .catch(error => console.error(error));
+        return sub;
+    }
+
+    const getName = async () => {
+        let name: string = "";
+        await getUserAttributes()
+            .then((data: CognitoUserAttribute[]) => data.filter((element) => element.Name === 'given_name'))
+            .then((element) => name = element[0].Value)
+            .catch(error => console.error(error));
+        return name;
+    }
+
+    const value = { user, login, logout, getSession, signUp, confirmCode, getSub, getName };
 
     return (
         <>

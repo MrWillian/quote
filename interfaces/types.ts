@@ -8,3 +8,10 @@ export type InputProps = {
 export type ChildrenProps = {
     children: React.ReactNode;
 };
+
+export type Quote = {
+    id: string;
+    title: string;
+    description: string;
+    date: string;
+}

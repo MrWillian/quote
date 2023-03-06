@@ -1,4 +1,4 @@
-import { InputProps } from "../../interfaces/types";
+import { InputProps } from "../../../interfaces/types";
 
 export const CodeInput = ({ name, onChange, inputRef }: InputProps) => (
     <input 
