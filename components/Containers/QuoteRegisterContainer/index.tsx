@@ -1,29 +1,13 @@
 import Image from "next/image";
 import { useAuth } from "../../../contexts/AuthContext";
 import { registerQuote } from "../../../lib/registerQuote";
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { object, string, date } from 'yup';
-import art from '../../../public/static/images/WriteDownBalloonArtwrite-down-baloon.png';
 import { sanitizeQuoteDataToSave } from "../../../utils/sanitizeQuoteDataToSave";
-
-let schema = object().shape({
-    title: string().required().min(2),
-    description: string().required().min(2),
-    date: date().required(),
-});
+import { useQuoteRegisterForm } from "../../../hooks/useQuoteRegisterForm";
+import art from '../../../public/static/images/WriteDownBalloonArtwrite-down-baloon.png';
 
 export const QuoteRegisterContainer = () => {
     const { getSub } = useAuth();
-    const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useForm({ 
-        mode: 'all', 
-        resolver: yupResolver(schema),
-        defaultValues: {
-            title: '',
-            description: '',
-            date: new Date().toISOString().substr(0, 10)
-        }
-    });
+    const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useQuoteRegisterForm();
 
     const onSubmit = async (fields: any) => {
         const sub = await getSub();
