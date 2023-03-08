@@ -8,14 +8,12 @@ let schema = object().shape({
     date: date().required(),
 });
 
-export const useQuoteRegisterForm = () => {
-    return useForm({ 
-        mode: 'all', 
-        resolver: yupResolver(schema),
-        defaultValues: {
-            title: '',
-            description: '',
-            date: new Date().toISOString().substr(0, 10)
-        }
-    });
-}
+export const useQuoteRegisterForm = () => useForm({ 
+    mode: 'all', 
+    resolver: yupResolver(schema),
+    defaultValues: {
+        title: '',
+        description: '',
+        date: new Date().toISOString().substr(0, 10)
+    }
+});
