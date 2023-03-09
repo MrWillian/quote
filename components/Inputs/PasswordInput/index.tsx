@@ -19,7 +19,7 @@ export const PasswordInput = React.forwardRef(
             <span className="font-thin text-red-500">
                 A senha é obrigatória e deverá conter pelo menos 8 caracteres, entre eles: <br />
                 * um número <br />
-                * um caractere especial (!@#$%^&*)<br />
+                * um caractere especial (!@#$%^&.*)<br />
                 * uma letra maiúscula <br />
                 * uma letra minúscula
             </span>
