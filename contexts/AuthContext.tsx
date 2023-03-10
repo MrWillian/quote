@@ -36,10 +36,9 @@ export function AuthProvider({ children }: ChildrenProps) {
     const [user, setUser] = useState<User>({});
 
     const login = async (Username: string, Password: string) => {
-        return new Promise((resolve, reject) => {
+        return await new Promise((resolve, reject) => {
             const user = new CognitoUser({ Username, Pool });
             const authDetails = new AuthenticationDetails({ Username, Password });
-    
             user.authenticateUser(authDetails, {
                 onSuccess: (data) => {
                     console.log('onSuccess: ', data);
@@ -63,7 +62,7 @@ export function AuthProvider({ children }: ChildrenProps) {
     };
 
     const signUp = async (email: string, password: string, userAttributes: CognitoUserAttribute[]) => {
-        return await new Promise((resolve, reject) => {    
+        return await new Promise((resolve, reject) => {
             Pool.signUp(email, password, userAttributes, null, (err, data) => {
                 if (err) {
                     reject(err);
