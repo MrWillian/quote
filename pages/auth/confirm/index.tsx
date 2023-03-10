@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { 
     AuthLayout,
     WriteDownContainer,
@@ -13,6 +14,7 @@ import { ButtonType } from '../../../interfaces/enums';
 const Confirm = () => {
     const { user, confirmCode } = useAuth();
     const { getCode } = useCodeConfirmation();
+    const router = useRouter();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,8 +22,10 @@ const Confirm = () => {
 
         confirmCode(user.email, code).then((data) => {
             console.log('Success', data);
+            router.push('/dashboard');
         }).catch((error) => {
-            console.error(error);
+            console.error(Error(error.message ?? error));
+            alert(`Ocorreu algum erro... ${error.message ?? error}`);
         });
     }
 
