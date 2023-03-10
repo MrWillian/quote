@@ -22,7 +22,8 @@ const Confirm = () => {
 
         confirmCode(user.email, code).then((data) => {
             console.log('Success', data);
-            router.push('/dashboard');
+            alert('Sucesso! Agora já pode realizar o Login!!');
+            router.push('/auth/login');
         }).catch((error) => {
             console.error(Error(error.message ?? error));
             alert(`Ocorreu algum erro... ${error.message ?? error}`);
