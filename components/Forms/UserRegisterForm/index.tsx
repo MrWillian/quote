@@ -12,7 +12,7 @@ import { EmailInput, PasswordInput } from "../../Inputs";
 
 export const UserRegisterForm = () => {
     const router = useRouter();
-    const { signUp, initiateAuth } = useAuth();
+    const { signUp } = useAuth();
     const { register, handleSubmit, formState: { errors }, setFocus } = useUserRegisterForm();
 
     useEffect(() => {
