@@ -6,6 +6,7 @@ import { DashboardHeader } from './DashboardHeader';
 import { QuoteAppIcon } from './QuoteAppIcon';
 import { EmailInput, PasswordInput } from './Inputs';
 import { Layout, AuthLayout, DashboardLayout } from './Layouts';
+import { SpinnerIcon } from './Icons';
 
 export {
     Button,
@@ -23,5 +24,6 @@ export {
     PasswordInput,
     Layout,
     AuthLayout,
-    DashboardLayout
+    DashboardLayout,
+    SpinnerIcon
 };
