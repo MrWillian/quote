@@ -44,8 +44,8 @@ const Confirm = () => {
                     <div>
                         <form onSubmit={handleSubmit}>
                             <ConfirmationContainer />
-                            <div className='flex items-center justify-between gap-6'>
-                                <Button buttonType={ButtonType.Cancel} />
+                            <div className='flex items-center justify-center gap-6'>
+                                {/* <Button buttonType={ButtonType.Cancel} /> */}
                                 <Button buttonType={ButtonType.Verify} />
                             </div>
                         </form>
