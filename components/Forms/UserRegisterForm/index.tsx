@@ -13,13 +13,13 @@ import { EmailInput, PasswordInput } from "../../Inputs";
 export const UserRegisterForm = () => {
     const router = useRouter();
     const { signUp } = useAuth();
-    const { register, handleSubmit, formState: { errors }, setFocus } = useUserRegisterForm();
+    const { register, handleSubmit, formState: { isSubmitting, errors }, setFocus } = useUserRegisterForm();
 
     useEffect(() => {
         setFocus("givenName");
     }, [setFocus]);
 
-    const onSubmit: SubmitHandler<UserRegisterProps> = ({ givenName, email, password }) => {
+    const onSubmit: SubmitHandler<UserRegisterProps> = async ({ givenName, email, password }) => {
         let givenNameAttribute: CognitoUserAttribute = new CognitoUserAttribute({
             Name: 'given_name', Value: givenName 
         });
@@ -27,7 +27,7 @@ export const UserRegisterForm = () => {
             Name: 'email', Value: email 
         });
 
-        signUp(email, password, [givenNameAttribute, emailAttribute]).then((data) => {
+        await signUp(email, password, [givenNameAttribute, emailAttribute]).then((data) => {
             console.log("Success", data);
             router.push('/auth/confirm');
         }).catch((error) => {
@@ -59,7 +59,7 @@ export const UserRegisterForm = () => {
                 {errors.confirmPassword && <span className="font-thin text-red-500">{errors.confirmPassword.message}</span>}
             </div>
             <br />
-            <Button buttonType={ButtonType.Register} />
+            <Button buttonType={ButtonType.Register} isSubmitting={isSubmitting} />
             <Link href="/auth/login" className='flex items-center my-2'>
                 <span className='text-sm underline font-extralight mr-1'>
                     Já tem uma conta? Faça Login...
