@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { 
     AuthLayout,
     WriteDownContainer,
@@ -13,6 +14,7 @@ import { ButtonType } from '../../../interfaces/enums';
 const Confirm = () => {
     const { user, confirmCode } = useAuth();
     const { getCode } = useCodeConfirmation();
+    const router = useRouter();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,8 +22,11 @@ const Confirm = () => {
 
         confirmCode(user.email, code).then((data) => {
             console.log('Success', data);
+            alert('Sucesso! Agora já pode realizar o Login!!');
+            router.push('/auth/login');
         }).catch((error) => {
-            console.error(error);
+            console.error(Error(error.message ?? error));
+            alert(`Ocorreu algum erro... ${error.message ?? error}`);
         });
     }
 
@@ -39,8 +44,8 @@ const Confirm = () => {
                     <div>
                         <form onSubmit={handleSubmit}>
                             <ConfirmationContainer />
-                            <div className='flex items-center justify-between gap-6'>
-                                <Button buttonType={ButtonType.Cancel} />
+                            <div className='flex items-center justify-center gap-6'>
+                                {/* <Button buttonType={ButtonType.Cancel} /> */}
                                 <Button buttonType={ButtonType.Verify} />
                             </div>
                         </form>
