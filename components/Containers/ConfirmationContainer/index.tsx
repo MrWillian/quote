@@ -9,9 +9,17 @@ export const ConfirmationContainer = () => {
     const handleChange = (event) => {
         if (event.target.value === "" || /^[0-9\b]+$/.test(event.target.value)) {
             handleCode(event.target.name, event.target.value);
+            moveToNextInput();
         }
         return '';
     }
+
+    const moveToNextInput = () => {
+        const active = document.activeElement;
+        if (active?.nextElementSibling) {
+          (active.nextElementSibling as HTMLElement).focus();
+        }
+      }
 
     return (
         <div className="my-8">
