@@ -2,7 +2,7 @@ import React from "react";
 import { InputProps } from "../../../interfaces/types";
 
 export const PasswordInput = React.forwardRef(
-    ({ value, onChange, register, error, ...rest }: InputProps,
+    ({ value, onChange, register, error, isLoginForm, ...rest }: InputProps,
     ref: React.Ref<HTMLInputElement>
 ) => (
     <div className='flex flex-col justify-center my-2 w-full' ref={ref}>
@@ -15,7 +15,7 @@ export const PasswordInput = React.forwardRef(
             className={`rounded px-2 py-1 shadow-lg text-black ${error && 'border-2 border-red-500'}`}
             {...rest}
         />
-        {error && 
+        {error && !isLoginForm ?
             <span className="font-thin text-red-500">
                 A senha é obrigatória e deverá conter pelo menos 8 caracteres, entre eles: <br />
                 * um número <br />
@@ -23,6 +23,12 @@ export const PasswordInput = React.forwardRef(
                 * uma letra maiúscula <br />
                 * uma letra minúscula
             </span>
+            :
+            <></>
+        }
+        {error && isLoginForm ?
+            <span className="font-thin text-red-500">A senha é obrigatória e contém pelo menos 8 caracteres</span>
+            : <></>
         }
     </div>
 ));
