@@ -6,7 +6,12 @@ export const ConfirmationContainer = () => {
     const { code, handleCode } = useCodeConfirmation();
     const [ inputRef ] = useFocus();
 
-    const handleChange = (event) => handleCode(event.target.name, event.target.value);
+    const handleChange = (event) => {
+        if (event.target.value === "" || /^[0-9\b]+$/.test(event.target.value)) {
+            handleCode(event.target.name, event.target.value);
+        }
+        return '';
+    }
 
     return (
         <div className="my-8">
