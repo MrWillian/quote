@@ -5,12 +5,14 @@ type CodeConfirmationContextType = {
     code: string[];
     getCode: () => string;
     handleCode: (name: string, value: string) => void;
+    clearCode: () => void;
 };
 
 const codeConfirmationContextDefaultValues: CodeConfirmationContextType = {
     code: null,
     getCode: () => null,
     handleCode: () => null,
+    clearCode: () => null,
 }
 
 const CodeConfirmationContext = createContext<CodeConfirmationContextType>(codeConfirmationContextDefaultValues);
@@ -28,6 +30,8 @@ export const CodeConfirmationProvider = ({ children }: ChildrenProps) => {
 
     const getCode = () => objToString(code);
 
+    const clearCode = () => setCode([]);
+
     function objToString(obj) {
         let aux = '';
         return Object.entries(obj).reduce((str, [p, val]) => {
@@ -36,7 +40,7 @@ export const CodeConfirmationProvider = ({ children }: ChildrenProps) => {
         }, '');
     }
 
-    const value = { code, getCode, handleCode };
+    const value = { code, getCode, handleCode, clearCode };
     
     return (
         <CodeConfirmationContext.Provider value={value}>
