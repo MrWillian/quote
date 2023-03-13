@@ -10,7 +10,8 @@ export type InputProps = {
     onChange?: React.ChangeEventHandler<HTMLInputElement>,
     register?: UseFormRegister<FieldValues>,
     inputRef?: React.LegacyRef<HTMLInputElement>,
-    error?: Error
+    error?: Error,
+    isLoginForm?: boolean
 }
 
 export type ChildrenProps = {
