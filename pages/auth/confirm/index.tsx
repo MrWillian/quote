@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { 
     AuthLayout,
     WriteDownContainer,
@@ -15,6 +16,12 @@ const Confirm = () => {
     const { user, confirmCode } = useAuth();
     const { getCode } = useCodeConfirmation();
     const router = useRouter();
+
+    useEffect(() => {
+        if (Object.keys(user).length === 0) {
+            router.push('/auth/register');
+        }
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
