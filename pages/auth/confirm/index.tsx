@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { 
     AuthLayout,
     WriteDownContainer,
@@ -13,8 +13,9 @@ import { useCodeConfirmation } from '../../../contexts/CodeContext';
 import { ButtonType } from '../../../interfaces/enums';
 
 const Confirm = () => {
+    const [ isSubmitting, setIsSubmitting ] = useState<boolean>(false);
     const { user, confirmCode } = useAuth();
-    const { getCode } = useCodeConfirmation();
+    const { getCode, clearCode } = useCodeConfirmation();
     const router = useRouter();
 
     useEffect(() => {
@@ -26,14 +27,16 @@ const Confirm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const code = getCode();
+        setIsSubmitting(true);
 
         confirmCode(user.email, code).then((data) => {
-            console.log('Success', data);
             alert('Sucesso! Agora já pode realizar o Login!!');
+            setIsSubmitting(false);
+            clearCode();
             router.push('/auth/login');
         }).catch((error) => {
-            console.error(Error(error.message ?? error));
             alert(`Ocorreu algum erro... ${error.message ?? error}`);
+            setIsSubmitting(false);
         });
     }
 
@@ -53,7 +56,7 @@ const Confirm = () => {
                             <ConfirmationContainer />
                             <div className='flex items-center justify-center gap-6'>
                                 {/* <Button buttonType={ButtonType.Cancel} /> */}
-                                <Button buttonType={ButtonType.Verify} />
+                                <Button buttonType={ButtonType.Verify} isSubmitting={isSubmitting} />
                             </div>
                         </form>
                     </div>
