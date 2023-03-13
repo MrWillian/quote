@@ -11,14 +11,32 @@ import { EmailInput, PasswordInput } from "../../Inputs";
 
 export const LoginForm = () => {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useUserLoginForm();
-    const { login } = useAuth();
+    const { user, login, resendConfirmationCode } = useAuth();
     const [ inputRef ] = useFocus();
     const router = useRouter();
 
     const onSubmit: SubmitHandler<UserLoginProps> = async ({ email, password }) => {
-        await login(email, password).then(() => {
+        await login(email, password).then((data) => {
             router.replace('/dashboard');
         }).catch((error) => {
+            if (error.code === 'UserNotConfirmedException') {
+                user.email = email;
+                resendConfirmationCode(email).then(() => {
+                    alert('Este usuário ainda não foi confirmado, você será redirecionado...');
+                    router.replace('/auth/confirm');
+                }).catch((error) => {
+                    alert(`Ocorreu algum erro... ${error.message ?? error}`);
+                });
+                return;
+            } else if (error.code == 'NotAuthorizedException') {
+                alert('Senha incorreta!');
+                return;
+            } else if (error.code == 'ResourceNotFoundException') {
+                alert('Usuário não encontrado!');
+                return;
+            } else if (error.code == 'PasswordResetRequiredException') {
+                // Reset Password Required
+            }
             alert(`Ocorreu algum erro... ${error.message ?? error}`);
         });
     }
