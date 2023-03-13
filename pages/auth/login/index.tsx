@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
 import { 
@@ -15,17 +14,16 @@ import { useFocus } from '../../../hooks/useFocus';
 import { ButtonType } from '../../../interfaces/enums';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useRouter } from 'next/router';
+import { useForm } from "react-hook-form";
 
-const Login = () => {
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
+const Login = () => {    
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const router = useRouter();
     const { login } = useAuth();
     const [ inputRef ] = useFocus();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        login(email, password).then((data) => {
+    const onSubmit = (field) => {
+        login(field.email, field.password).then((data) => {
             router.replace('/dashboard');
             console.log("Logged in!", data);
         }).catch((error) => {
@@ -44,16 +42,9 @@ const Login = () => {
                         subtitle="Entre com os dados informados quando você se registrou..."
                     />
                     <div>
-                        <form onSubmit={handleSubmit}>
-                            <EmailInput 
-                                inputRef={inputRef} 
-                                value={email} 
-                                onChange={(event) => setEmail(event.target.value)}
-                            />
-                            <PasswordInput 
-                                value={password} 
-                                onChange={(event) => setPassword(event.target.value)}
-                            />
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <EmailInput inputRef={inputRef} {...register('email')} error={errors.email} />
+                            <PasswordInput {...register('password')} error={errors.email} />
                             <div className="flex justify-between items-center mb-6">
                                 <div className="items-center flex">
                                     <input type="checkbox" id="rememberme" name="rememberme" />
