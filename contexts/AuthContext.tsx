@@ -11,6 +11,7 @@ type AuthContextType = {
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
     getSession: () => Promise<unknown>;
     confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
+    resendConfirmationCode: (email: string) => Promise<unknown>;
     getSub: () => Promise<string>;
     getName: () => Promise<string>;
 };
@@ -22,6 +23,7 @@ const authContextDefaultValues: AuthContextType = {
     signUp: () => null,
     getSession: () => null,
     confirmCode: () => null,
+    resendConfirmationCode: () => null,
     getSub: () => null,
     getName: () => null,
 };
@@ -115,6 +117,18 @@ export function AuthProvider({ children }: ChildrenProps) {
         });
     }
 
+    const resendConfirmationCode = async (email: string) => {
+        const user = new CognitoUser({ Username: email, Pool });
+        return await new Promise((resolve, reject) => {
+            user.resendConfirmationCode((error, result) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(result);
+            });
+        });
+    }
+
     const getUserAttributes = async () => {
         const user = Pool.getCurrentUser();
         getSession(user);
@@ -147,7 +161,7 @@ export function AuthProvider({ children }: ChildrenProps) {
         return name;
     }
 
-    const value = { user, login, logout, getSession, signUp, confirmCode, getSub, getName };
+    const value = { user, login, logout, getSession, signUp, confirmCode, resendConfirmationCode, getSub, getName };
 
     return (
         <>
