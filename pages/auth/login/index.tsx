@@ -17,13 +17,13 @@ import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 
 const Login = () => {    
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm();
     const router = useRouter();
     const { login } = useAuth();
     const [ inputRef ] = useFocus();
 
-    const onSubmit = (field) => {
-        login(field.email, field.password).then((data) => {
+    const onSubmit = async (field) => {
+        await login(field.email, field.password).then((data) => {
             router.replace('/dashboard');
             console.log("Logged in!", data);
         }).catch((error) => {
@@ -54,7 +54,7 @@ const Login = () => {
                                     <a href="#" className='text-sm underline font-extralight'>Esqueceu a senha?</a>
                                 </div>
                             </div>
-                            <Button buttonType={ButtonType.Login} />
+                            <Button buttonType={ButtonType.Login} isSubmitting={isSubmitting} />
                             {/* <hr className='my-4' /> */}
                             {/* <SocialLoginButton /> */}
                             <Link href="/auth/register" className='flex items-center my-2'>
