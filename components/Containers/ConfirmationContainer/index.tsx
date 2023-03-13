@@ -1,6 +1,7 @@
 import { useAuth } from "../../../contexts/AuthContext";
 import { useCodeConfirmation } from "../../../contexts/CodeContext";
 import { useFocus } from "../../../hooks/useFocus";
+import { moveToNextInput } from "../../../utils/moveToNextInput";
 import { CodeInput } from "./CodeInput";
 
 export const ConfirmationContainer = () => {
@@ -22,13 +23,6 @@ export const ConfirmationContainer = () => {
         }).catch((error) => {
             alert(`Ocorreu algum erro... ${error.message ?? error}`);
         });
-    }
-
-    const moveToNextInput = () => {
-        const active = document.activeElement;
-        if (active?.nextElementSibling) {
-            (active.nextElementSibling as HTMLElement).focus();
-        }
     }
 
     return (
