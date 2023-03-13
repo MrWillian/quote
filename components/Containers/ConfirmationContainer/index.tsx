@@ -1,8 +1,10 @@
+import { useAuth } from "../../../contexts/AuthContext";
 import { useCodeConfirmation } from "../../../contexts/CodeContext";
 import { useFocus } from "../../../hooks/useFocus";
 import { CodeInput } from "./CodeInput";
 
 export const ConfirmationContainer = () => {
+    const { user, resendConfirmationCode } = useAuth();
     const { code, handleCode } = useCodeConfirmation();
     const [ inputRef ] = useFocus();
 
@@ -14,12 +16,20 @@ export const ConfirmationContainer = () => {
         return '';
     }
 
+    const handleResendConfirmationCode = () => {
+        resendConfirmationCode(user.email).then((data) => {
+            alert('Sucesso! Verifique sua caixa de emails!!');
+        }).catch((error) => {
+            alert(`Ocorreu algum erro... ${error.message ?? error}`);
+        });
+    }
+
     const moveToNextInput = () => {
         const active = document.activeElement;
         if (active?.nextElementSibling) {
-          (active.nextElementSibling as HTMLElement).focus();
+            (active.nextElementSibling as HTMLElement).focus();
         }
-      }
+    }
 
     return (
         <div className="my-8">
@@ -38,7 +48,7 @@ export const ConfirmationContainer = () => {
             </div>
             <div className='flex items-center justify-center gap-2'>
                 <p>Não recebeu o código?</p>
-                <a href="#" className="underline">Reenviar</a>
+                <button type="button" className="underline" onClick={handleResendConfirmationCode}>Reenviar</button>
             </div>
         </div>
     );
