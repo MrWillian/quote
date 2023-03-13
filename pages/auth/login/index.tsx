@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { FcRight } from 'react-icons/fc';
 import { 
     AuthLayout,
-    SocialLoginButton,
     WriteDownContainer,
     FormHeader,
     QuoteAppIcon,
@@ -14,20 +13,20 @@ import { useFocus } from '../../../hooks/useFocus';
 import { ButtonType } from '../../../interfaces/enums';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useRouter } from 'next/router';
-import { useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
+import { useUserLoginForm, UserLoginProps } from '../../../hooks/useUserLoginForm';
 
 const Login = () => {    
-    const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm();
+    const { register, handleSubmit, formState: { isSubmitting, errors } } = useUserLoginForm();
     const router = useRouter();
     const { login } = useAuth();
     const [ inputRef ] = useFocus();
 
-    const onSubmit = async (field) => {
-        await login(field.email, field.password).then((data) => {
+    const onSubmit: SubmitHandler<UserLoginProps> = async ({ email, password }) => {
+        await login(email, password).then(() => {
             router.replace('/dashboard');
-            console.log("Logged in!", data);
         }).catch((error) => {
-            console.error("Failed to login!", error);
+            alert(`Ocorreu algum erro... ${error.message ?? error}`);
         });
     }
 
@@ -44,7 +43,7 @@ const Login = () => {
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <EmailInput inputRef={inputRef} {...register('email')} error={errors.email} />
-                            <PasswordInput {...register('password')} error={errors.email} />
+                            <PasswordInput {...register('password')} error={errors.password} isLoginForm={true} />
                             <div className="flex justify-between items-center mb-6">
                                 <div className="items-center flex">
                                     <input type="checkbox" id="rememberme" name="rememberme" />
@@ -55,8 +54,6 @@ const Login = () => {
                                 </div>
                             </div>
                             <Button buttonType={ButtonType.Login} isSubmitting={isSubmitting} />
-                            {/* <hr className='my-4' /> */}
-                            {/* <SocialLoginButton /> */}
                             <Link href="/auth/register" className='flex items-center my-2'>
                                 <span className='text-sm underline font-extralight mr-1'>Precisa de uma conta?</span>
                                 <FcRight size={'1.5em'} color={'#282A37'} />
