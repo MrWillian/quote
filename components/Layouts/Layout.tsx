@@ -29,7 +29,7 @@ const Layout = ({ children, title = 'Quote App' }: Props) => {
           </Link>
           <div className="flex justify-around w-1/2">
             <Link href="/contact" className={`hover:underline ${router.pathname === '/contact' && 'underline'}`}>Contact</Link>
-            <Link href="/about" className="hover:underline">FAQ</Link>
+            <Link href="/faq" className={`hover:underline ${router.pathname === '/faq' && 'underline'}`}>FAQ</Link>
             <div className="flex items-center justify-between gap-2">
               <Link href="/auth/login" className="hover:underline">LOGIN</Link>
               <span className="font-thin">{'|'}</span>
