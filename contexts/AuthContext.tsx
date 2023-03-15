@@ -3,18 +3,7 @@ import { AuthenticationDetails, CognitoUser, CognitoUserAttribute } from "amazon
 import Pool from '../config/userPool';
 import { User } from "../interfaces";
 import { ChildrenProps } from "../interfaces/types";
-
-type AuthContextType = {
-    user: User;
-    login: (Username: string, Password: string) => Promise<unknown>;
-    logout: () => void;
-    signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
-    getSession: () => Promise<unknown>;
-    confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
-    resendConfirmationCode: (email: string) => Promise<unknown>;
-    getSub: () => Promise<string>;
-    getName: () => Promise<string>;
-};
+import { AuthContextType } from "./types/AuthContextType";
 
 const authContextDefaultValues: AuthContextType = {
     user: null,
