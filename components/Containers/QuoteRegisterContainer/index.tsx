@@ -7,11 +7,11 @@ import art from '../../../public/static/images/WriteDownBalloonArtwrite-down-bal
 import { SpinnerIcon } from "../../Icons";
 
 export const QuoteRegisterContainer = () => {
-    const { getSub } = useAuth();
+    const { getUserAttributeByName } = useAuth();
     const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useQuoteRegisterForm();
 
     const onSubmit = async (fields: any) => {
-        const sub = await getSub();
+        const sub = await getUserAttributeByName('sub');
         const data = await sanitizeQuoteDataToSave(fields, sub);
         const response = await registerQuote(data).then(response => response);
         if (response.status === '200') {
