@@ -30,18 +30,14 @@ export function AuthProvider({ children }: ChildrenProps) {
             const authDetails = new AuthenticationDetails({ Username, Password });
             getCognitoUser(Username).authenticateUser(authDetails, {
                 onSuccess: (data) => {
-                    console.log('onSuccess: ', data);
                     const user = { email: Username }
                     setUser(user);
-                    console.log('login user', user);
                     resolve(data);
                 },
                 onFailure: (err) => {
-                    console.error('onFailure: ', err);
                     reject(err);
                 },
                 newPasswordRequired: (data) => {
-                    console.log('newPasswordRequired: ', data);
                     resolve(data);
                 },
             });
@@ -88,10 +84,8 @@ export function AuthProvider({ children }: ChildrenProps) {
         return await new Promise((resolve, reject) => {
             getCognitoUser(email).confirmRegistration(confirmationCode, false, (error, result) => {
                 if (error) {
-                    console.error('failure: ', error);
                     reject(error);
                 }
-                console.log('success: ', result);
                 resolve(result);
             });
         });
@@ -123,7 +117,6 @@ export function AuthProvider({ children }: ChildrenProps) {
         return await new Promise((resolve, reject) => {
             user.getUserAttributes((error, result) => {
                 if (error) {
-                    console.error('failure: ', error);
                     reject(error);
                 }
                 resolve(result);
