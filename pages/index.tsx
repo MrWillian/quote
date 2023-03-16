@@ -8,7 +8,7 @@ const IndexPage = () => (
         <h1 className="text-8xl font-black uppercase tracking-widest leading-normal drop-shadow-lg shadow-black">Do Not Forget Anymore!</h1>
         <h4>by <span className="font-bold animate-ping opacity-75 drop-shadow-lg">Quote App</span></h4>
       </div>
-      <WriteDownContainer className="fixed -bottom-40 z-90 h-1/2 w-full animate-bounce" />
+      <WriteDownContainer className="fixed -bottom-40 z-90 h-2/4 w-full animate-bounce" />
     </div>
   </Layout>
 )
