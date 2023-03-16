@@ -3,14 +3,14 @@ import { useAuth } from "../../contexts/AuthContext";
 
 export const DashboardHeader = () => {
     const [name, setName] = useState('');
-    const { getName } = useAuth();
+    const { getUserAttributeByName } = useAuth();
 
     useEffect(() => {
         handleName();
     }, []);
 
     const handleName = async () => {
-        const name = await getName();
+        const name = await getUserAttributeByName('given_name');
         setName(name);
     }
 
