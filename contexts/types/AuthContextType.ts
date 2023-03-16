@@ -9,6 +9,5 @@ export type AuthContextType = {
     getSession: () => Promise<unknown>;
     confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
     resendConfirmationCode: (email: string) => Promise<unknown>;
-    getSub: () => Promise<string>;
-    getName: () => Promise<string>;
+    getUserAttributeByName: (name: string) => Promise<string>;
 };
