@@ -1,0 +1,75 @@
+{
+    "common": {
+        "success": "Success!",
+        "error_on_save": "An error ocurred when trying to save...",
+        "title": "Title",
+        "define_title": "Define the title...",
+        "description": "Description",
+        "define_description": "Define the description...",
+        "date": "Date",
+        "delete": "Delete",
+        "success_delete": "Success on Delete",
+        "no_memories": "There are still no memories, write one right now...",
+        "loading": "Loading...",
+        "button_signin": "Sign In",
+        "button_signup": "Sign Up",
+        "button_cancel": "Cancel",
+        "button_verify": "Verify"
+    },
+    "home": {
+        "title": "Do Not Forget Anymore!",
+        "by": "by ",
+        "contact": "Contact",
+        "faq": "FAQ"
+    },
+    "contact": {
+        "title": "We've been waiting for you!",
+        "subtitle": "Let us know how we can help.",
+        "info": "Contact us through any of our contact forms."
+    },
+    "faq": {
+        "title": "What do you want to know?",
+        "subtitle": "Some of the most frequently asked questions",
+        "first_question": "It is a free service?",
+        "first_answer": "Yes, the Quote App is a service where you wil not be charged any amount!",
+        "second_question": "There are an app?",
+        "second_answer": "Yes, we have an app available on PlayStore, and you will be able to access it with the same account."
+    },
+    "login": {
+        "title": "Hey, hello!!",
+        "subtitle": "Enter the data informed when you registered...",
+        "need_an_account": "Need an account?" 
+    },
+    "register": {
+        "title": "Create your Account!!",
+        "subtitle": "It will be fast and easy...",
+        "already_have_an_account": "Already have an Account? Sign In..."
+    },
+    "forms": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirm_password": "Confirm Password",
+        "required_name": "The name is required",
+        "minimum_name": "The name must contain at least 3 characters",
+        "required_email": "The email is required",
+        "valid_email": "Enter a valid email address",
+        "required_password": "The password is required",
+        "do_not_match_confirm_password": "Passwords do not match",
+        "required_password_and_min_char": "The password is required and must contain at least 8 characters",
+        "error": "Some error occured...",
+        "error_password": "Wrong password!",
+        "error_user_not_found": "User not Found!",
+        "error_user_not_confirmed": "This user has not yet been confirmed, you will be redirected...",
+        "password_requires_1": "The password is required and must contain at least 8 characters, between them:",
+        "password_requires_2": "a number",
+        "password_requires_3": "a special character (!@#$%^&.*)",
+        "password_requires_4": "a uppercase latter",
+        "password_requires_5": "a lowercase latter"
+    },
+    "dashboard": {
+        "search": "Search...",
+        "hello": "Hello, ",
+        "memories": "See all of your memories..."
+    }    
+}
