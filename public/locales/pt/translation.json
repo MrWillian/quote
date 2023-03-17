@@ -1,0 +1,11 @@
+{
+    "dashboard": {
+        "search": "Pesquisar...",
+        "hello": "Olá, ",
+        "memories": "Veja todas as suas memórias..."
+    },
+    "common": {
+        "success": "Sucesso!",
+        "error_on_save": "Ocorreu um erro ao tentar salvar..."
+    }
+}
