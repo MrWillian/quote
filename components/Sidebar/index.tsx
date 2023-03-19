@@ -1,10 +1,12 @@
 import { QuoteAppIcon } from "../QuoteAppIcon";
 import { useAuth } from "../../contexts/AuthContext";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 export const Sidebar = () => {
   const { logout } = useAuth();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
@@ -45,7 +47,7 @@ export const Sidebar = () => {
                     />
                   </svg>
                 </span>
-                <span className="ml-3 text-gray-200">Home</span>
+                <span className="ml-3 text-gray-200">{t('dashboard.home')}</span>
               </a>
             </li>
             <li className="my-px">
@@ -68,7 +70,7 @@ export const Sidebar = () => {
                       <path d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279 c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179 c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"></path>
                     </svg>
                   </span>
-                  <span className="ml-3 text-red-500">Sair</span>
+                  <span className="ml-3 text-red-500">{t('dashboard.logout')}</span>
                 </a>
               </button>
             </li>
