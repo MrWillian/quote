@@ -1,6 +1,7 @@
 {
     "common": {
         "success": "Success!",
+        "error_ocurred": "An error ocurred...",
         "error_on_save": "An error ocurred when trying to save...",
         "title": "Title",
         "define_title": "Define the title...",
@@ -17,17 +18,20 @@
         "button_verify": "Verify"
     },
     "home": {
+        "page_title": "Home",
         "title": "Do Not Forget Anymore!",
         "by": "by ",
         "contact": "Contact",
         "faq": "FAQ"
     },
     "contact": {
+        "page_title": "Contact",
         "title": "We've been waiting for you!",
         "subtitle": "Let us know how we can help.",
         "info": "Contact us through any of our contact forms."
     },
     "faq": {
+        "page_title": "FAQ",
         "title": "What do you want to know?",
         "subtitle": "Some of the most frequently asked questions",
         "first_question": "It is a free service?",
@@ -36,14 +40,25 @@
         "second_answer": "Yes, we have an app available on PlayStore, and you will be able to access it with the same account."
     },
     "login": {
+        "page_title": "Sign In",
         "title": "Hey, hello!!",
         "subtitle": "Enter the data informed when you registered...",
         "need_an_account": "Need an account?" 
     },
     "register": {
+        "page_title": "Sign Up",
         "title": "Create your Account!!",
         "subtitle": "It will be fast and easy...",
         "already_have_an_account": "Already have an Account? Sign In..."
+    },
+    "confirm": {
+        "page_title": "Confirm the code",
+        "title": "Please, check your email!!",
+        "subtitle": "We send a email to",
+        "success": "Success! You can Sign In now!!",
+        "success_resend": "Success! Check your email!",
+        "do_not_receive": "Do not receive the code?",
+        "resend": "Resend"
     },
     "forms": {
         "name": "Name",
@@ -70,6 +85,8 @@
     "dashboard": {
         "search": "Search...",
         "hello": "Hello, ",
-        "memories": "See all of your memories..."
-    }    
+        "memories": "See all of your memories...",
+        "home": "Home",
+        "logout": "Log out"
+    }
 }
