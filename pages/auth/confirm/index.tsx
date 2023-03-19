@@ -11,12 +11,14 @@ import {
 import { useAuth } from '../../../contexts/AuthContext';
 import { useCodeConfirmation } from '../../../contexts/CodeContext';
 import { ButtonType } from '../../../interfaces/enums';
+import { useTranslation } from "react-i18next";
 
 const Confirm = () => {
     const [ isSubmitting, setIsSubmitting ] = useState<boolean>(false);
     const { user, confirmCode } = useAuth();
     const { getCode, clearCode } = useCodeConfirmation();
     const router = useRouter();
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (Object.keys(user).length === 0) {
@@ -30,26 +32,26 @@ const Confirm = () => {
         setIsSubmitting(true);
 
         confirmCode(user.email, code).then((data) => {
-            alert('Sucesso! Agora já pode realizar o Login!!');
+            alert(t('confirm.success'));
             setIsSubmitting(false);
             clearCode();
             router.push('/auth/login');
         }).catch((error) => {
-            alert(`Ocorreu algum erro... ${error.message ?? error}`);
+            alert(`${t('common.error_ocurred')} ${error.message ?? error}`);
             setIsSubmitting(false);
         });
     }
 
     return (
-        <AuthLayout title="Verificar o código | Quote App">
+        <AuthLayout title={t('confirm.page_title')}>
             <div className="flex items-center justify-center py-4 px-2 h-screen">
                 <section 
                     className='flex flex-col h-full justify-center my-4 mx-10 border-r-5 border-gray-500 w-1/2'
                 >
                     <QuoteAppIcon />
                     <FormHeader 
-                        title="Por favor, cheque seu email!!" 
-                        subtitle={`Nós enviamos um email para ${user.email}`}
+                        title={t('confirm.title')}
+                        subtitle={`${t('confirm.subtitle')} ${user.email}`}
                     />
                     <div>
                         <form onSubmit={handleSubmit}>
