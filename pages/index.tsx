@@ -1,16 +1,23 @@
 import Layout from '../components/Layouts/Layout';
 import { WriteDownContainer } from '../components';
+import { useTranslation } from "react-i18next";
 
-const IndexPage = () => (
-  <Layout title="Início | Quote App">
-    <div className="flex flex-col justify-center items-center pt-10">
-      <div>
-        <h1 className="text-8xl font-black uppercase tracking-widest leading-normal drop-shadow-lg shadow-black">Do Not Forget Anymore!</h1>
-        <h4>by <span className="font-bold animate-ping opacity-75 drop-shadow-lg">Quote App</span></h4>
+const IndexPage = () => {
+  const { t } = useTranslation();
+
+  return (
+    <Layout title={t('home.page_title')}>
+      <div className="flex flex-col items-center justify-center pt-10">
+        <div>
+          <h1 className="font-black leading-normal tracking-widest uppercase text-8xl drop-shadow-lg shadow-black">
+            {t('home.title')}
+          </h1>
+          <h4>{t('home.by')}<span className="font-bold opacity-75 animate-ping drop-shadow-lg">Quote App</span></h4>
+        </div>
+        <WriteDownContainer className="fixed right-0 w-full -bottom-40 h-2/4 animate-bounce" />
       </div>
-      <WriteDownContainer className="fixed -bottom-40 z-90 h-2/4 w-full animate-bounce" />
-    </div>
-  </Layout>
-)
+    </Layout>
+  );
+}
 
 export default IndexPage;
