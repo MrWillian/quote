@@ -8,12 +8,14 @@ import { UserLoginProps, useUserLoginForm } from "../../../hooks/useUserLoginFor
 import { ButtonType } from "../../../interfaces/enums";
 import { Button } from "../../Buttons";
 import { EmailInput, PasswordInput } from "../../Inputs";
+import { useTranslation } from "react-i18next";
 
 export const LoginForm = () => {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useUserLoginForm();
     const { user, login, resendConfirmationCode } = useAuth();
     const [ inputRef ] = useFocus();
     const router = useRouter();
+    const { t } = useTranslation();
 
     const onSubmit: SubmitHandler<UserLoginProps> = async ({ email, password }) => {
         await login(email, password).then((data) => {
@@ -22,22 +24,22 @@ export const LoginForm = () => {
             if (error.code === 'UserNotConfirmedException') {
                 user.email = email;
                 resendConfirmationCode(email).then(() => {
-                    alert('Este usuário ainda não foi confirmado, você será redirecionado...');
+                    alert(t('forms.error_user_not_confirmed'));
                     router.replace('/auth/confirm');
                 }).catch((error) => {
-                    alert(`Ocorreu algum erro... ${error.message ?? error}`);
+                    alert(`${t('forms.error')} ${error.message ?? error}`);
                 });
                 return;
             } else if (error.code == 'NotAuthorizedException') {
-                alert('Senha incorreta!');
+                alert(t('forms.error_password'));
                 return;
             } else if (error.code == 'ResourceNotFoundException') {
-                alert('Usuário não encontrado!');
+                alert(t('forms.error_user_not_found'));
                 return;
             } else if (error.code == 'PasswordResetRequiredException') {
                 // Reset Password Required
             }
-            alert(`Ocorreu algum erro... ${error.message ?? error}`);
+            alert(`${t('forms.error')} ${error.message ?? error}`);
         });
     }
 
@@ -57,7 +59,7 @@ export const LoginForm = () => {
             <br />
             <Button buttonType={ButtonType.Login} isSubmitting={isSubmitting} />
             <Link href="/auth/register" className='flex items-center my-2'>
-                <span className='text-sm underline font-extralight mr-1'>Precisa de uma conta?</span>
+                <span className='text-sm underline font-extralight mr-1'>{t('login.need_an_account')}</span>
                 <FcRight size={'1.5em'} color={'#282A37'} />
             </Link>
         </form>
