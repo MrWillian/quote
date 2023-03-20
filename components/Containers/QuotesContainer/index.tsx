@@ -33,20 +33,19 @@ export const QuotesContainer = ({ filter }: Props) => {
         }
 
         if (result.errorMessage) {
-            alert('Ocorreu um erro ao tentar deletar...');
-            console.log(result.errorMessage);
+            alert(t('dashboard.error_on_delete'));
         }
     }
 
-    if (error) alert('Ocorreu um erro ao tentar carregar as lembranças...');
+    if (error) alert(t('dashboard.error_on_load'));
 
     return (
         <div 
             ref={containerRef}
             className="flex flex-col relative justify-start no-scrollbar overflow-y-auto h-1/3 bg-accent-color rounded divide-y divide-gray-500 shadow-md"
         >
-            {!isLoading ?
-                data !== undefined ? 
+            {!isLoading ? (
+                data.length > 0 ? 
                     data?.map(quote => (
                         <div className="flex justify-between hover:border-b-[1px]" key={quote.id}>
                             <div className='flex justify-center flex-col p-2'>
@@ -61,7 +60,8 @@ export const QuotesContainer = ({ filter }: Props) => {
                             </div>
                         </div>
                     ))
-                : (<h1 className="p-4">{t('common.no_memories')}</h1>)
+                    : <h1 className="p-4">{t('common.no_memories')}</h1>
+                )
                 : (<p className="p-4">{t('common.loading')}</p>)
             }
             {data?.length > 6 && scrollTopPosition < 1 &&
