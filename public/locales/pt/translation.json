@@ -87,6 +87,8 @@
         "hello": "Olá, ",
         "memories": "Veja todas as suas memórias...",
         "home": "Início",
-        "logout": "Sair"
+        "logout": "Sair",
+        "error_on_delete": "Ocorreu um erro ao tentar deletar...",
+        "error_on_load": "Ocorreu um erro ao tentar carregar as lembranças..."
     }
 }

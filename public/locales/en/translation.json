@@ -87,6 +87,8 @@
         "hello": "Hello, ",
         "memories": "See all of your memories...",
         "home": "Home",
-        "logout": "Log out"
+        "logout": "Log out",
+        "error_on_delete": "An error ocurred when trying to delete...",
+        "error_on_load": "An error ocurred when trying to load the quotes..."
     }
 }
