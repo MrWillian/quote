@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 
 const Login = () => {
     const { t } = useTranslation();
-
     return (
         <AuthLayout title={t('login.page_title')}>
             <div className="flex items-center justify-center h-screen px-2 py-4">
