@@ -7,10 +7,10 @@ type Props = {
   title?: string
 }
 
-const AuthLayout = ({ children, title = 'Quote App' }: Props) => (
+const AuthLayout = ({ children, title }: Props) => (
   <div>
     <Head>
-      <title>{title}</title>
+      <title>{title} | Quote App</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="shortcut icon" href={favicon.src} />

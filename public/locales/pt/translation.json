@@ -1,0 +1,96 @@
+{
+    "common": {
+        "success": "Sucesso!",
+        "error_ocurred": "Ocorreu um erro...",
+        "error_on_save": "Ocorreu um erro ao tentar salvar...",
+        "title": "Titúlo",
+        "define_title": "Define o titúlo...",
+        "description": "Descrição",
+        "define_description": "Define a descrição...",
+        "date": "Data",
+        "delete": "Deletar",
+        "success_delete": "Sucesso ao deletar",
+        "no_memories": "Não há nenhuma memória, escreva uma agora mesmo...",
+        "loading": "Carregando...",
+        "button_signin": "Entrar",
+        "button_signup": "Registrar",
+        "button_cancel": "Cancelar",
+        "button_verify": "Verificar",
+        "english": "Inglês",
+        "portuguese": "Português"
+    },
+    "home": {
+        "page_title": "Início",
+        "title": "Não se esqueça mais!",
+        "by": "por ",
+        "contact": "Contato",
+        "faq": "FAQ"
+    },
+    "contact": {
+        "page_title": "Contato",
+        "title": "Nós estavamos esperando por você!",
+        "subtitle": "Deixe-nos saber como podemos lhe ajudar.",
+        "info": "Nos contate através de alguma de nosssas formas de contato."
+    },
+    "faq": {
+        "page_title": "FAQ",
+        "title": "O que você quer saber?",
+        "subtitle": "Algumas das perguntas mais frequentes",
+        "first_question": "Este serviço é gratuito?",
+        "first_answer": "Sim, o Quote App é um serviço onde não lhe será cobrado nenhum valor!",
+        "second_question": "Há um aplicativo?",
+        "second_answer": "Sim, nós temos um aplicativo disponível para download na PlayStore, e você poderá acessar com a mesma conta."
+    },
+    "login": {
+        "page_title": "Entrar",
+        "title": "Hey, olá!!",
+        "subtitle": "Entre com os dados informados quando você se registrou...",
+        "need_an_account": "Precisa de uma conta?" 
+    },
+    "register": {
+        "page_title": "Registrar",
+        "title": "Crie sua conta!!",
+        "subtitle": "Será rápido e fácil...",
+        "already_have_an_account": "Já tem uma conta? Entre..."
+    },
+    "confirm": {
+        "page_title": "Confirme o código",
+        "title": "Por favor, cheque seu email!!",
+        "subtitle": "Nós enviamos um email para",
+        "success": "Sucesso! Você pode entrar agora!!",
+        "success_resend": "Sucesso! Cheque seu email!",
+        "do_not_receive": "Não recebeu o código?",
+        "resend": "Reenviar"
+    },
+    "forms": {
+        "name": "Nome",
+        "email": "Email",
+        "password": "Senha",
+        "confirm_password": "Confirme a Senha",
+        "required_name": "O nome é obrigatório",
+        "minimum_name": "O nome deve conter pelo menos 3 caracteres",
+        "required_email": "O email é obrigatório",
+        "valid_email": "Entre com um email válido",
+        "required_password": "A senha é obrigatória",
+        "do_not_match_confirm_password": "Senhas não conferem",
+        "required_password_and_min_char": "A senha é obrigatória e deve conter pelo menos 8 caracteres",
+        "error": "Ocorreu um erro...",
+        "error_password": "Senha incorreta!",
+        "error_user_not_found": "Usuário não encontrado!",
+        "error_user_not_confirmed": "Este usuário ainda não foi confirmado, você sera redirecionado...",
+        "password_requires_1": "A senha é obrigatória e deve conter pelo menos 8 caracteres, entre eles:",
+        "password_requires_2": "um número",
+        "password_requires_3": "um caractere especial (!@#$%^&.*)",
+        "password_requires_4": "uma letra maiúscula",
+        "password_requires_5": "uma letra minúscula"
+    },
+    "dashboard": {
+        "search": "Pesquisar...",
+        "hello": "Olá, ",
+        "memories": "Veja todas as suas memórias...",
+        "home": "Início",
+        "logout": "Sair",
+        "error_on_delete": "Ocorreu um erro ao tentar deletar...",
+        "error_on_load": "Ocorreu um erro ao tentar carregar as lembranças..."
+    }
+}

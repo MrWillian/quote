@@ -3,18 +3,7 @@ import { AuthenticationDetails, CognitoUser, CognitoUserAttribute } from "amazon
 import Pool from '../config/userPool';
 import { User } from "../interfaces";
 import { ChildrenProps } from "../interfaces/types";
-
-type AuthContextType = {
-    user: User;
-    login: (Username: string, Password: string) => Promise<unknown>;
-    logout: () => void;
-    signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
-    getSession: () => Promise<unknown>;
-    confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
-    resendConfirmationCode: (email: string) => Promise<unknown>;
-    getSub: () => Promise<string>;
-    getName: () => Promise<string>;
-};
+import { AuthContextType } from "./types/AuthContextType";
 
 const authContextDefaultValues: AuthContextType = {
     user: null,
@@ -24,8 +13,7 @@ const authContextDefaultValues: AuthContextType = {
     getSession: () => null,
     confirmCode: () => null,
     resendConfirmationCode: () => null,
-    getSub: () => null,
-    getName: () => null,
+    getUserAttributeByName: () => null,
 };
 
 const AuthContext = createContext<AuthContextType>(authContextDefaultValues);
@@ -39,24 +27,17 @@ export function AuthProvider({ children }: ChildrenProps) {
 
     const login = async (Username: string, Password: string) => {
         return await new Promise((resolve, reject) => {
-            const user = new CognitoUser({ Username, Pool });
             const authDetails = new AuthenticationDetails({ Username, Password });
-            user.authenticateUser(authDetails, {
+            getCognitoUser(Username).authenticateUser(authDetails, {
                 onSuccess: (data) => {
-                    console.log('onSuccess: ', data);
-                    const user = {
-                        email: Username
-                    }
+                    const user = { email: Username }
                     setUser(user);
-                    console.log('login user', user);
                     resolve(data);
                 },
                 onFailure: (err) => {
-                    console.error('onFailure: ', err);
                     reject(err);
                 },
                 newPasswordRequired: (data) => {
-                    console.log('newPasswordRequired: ', data);
                     resolve(data);
                 },
             });
@@ -69,10 +50,7 @@ export function AuthProvider({ children }: ChildrenProps) {
                 if (err) {
                     reject(err);
                 }
-                const user = {
-                    name: userAttributes['given_name'],
-                    email: email
-                }
+                const user = { name: userAttributes['given_name'], email: email }
                 setUser(user);
                 resolve(data);
             });
@@ -103,30 +81,34 @@ export function AuthProvider({ children }: ChildrenProps) {
     };
 
     const confirmCode = async (email: string, confirmationCode: string) => {
-        const user = new CognitoUser({ Username: email, Pool });
-
         return await new Promise((resolve, reject) => {
-            user.confirmRegistration(confirmationCode, false, (error, result) => {
+            getCognitoUser(email).confirmRegistration(confirmationCode, false, (error, result) => {
                 if (error) {
-                    console.error('failure: ', error);
                     reject(error);
                 }
-                console.log('success: ', result);
                 resolve(result);
             });
         });
     }
 
     const resendConfirmationCode = async (email: string) => {
-        const user = new CognitoUser({ Username: email, Pool });
         return await new Promise((resolve, reject) => {
-            user.resendConfirmationCode((error, result) => {
+            getCognitoUser(email).resendConfirmationCode((error, result) => {
                 if (error) {
                     reject(error);
                 }
                 resolve(result);
             });
         });
+    }
+
+    const getUserAttributeByName = async (name: string) => {
+        let atributte: string = "";
+        await getUserAttributes()
+            .then((data: CognitoUserAttribute[]) => data.filter((element) => element.Name === name))
+            .then((element) => atributte = element[0].Value)
+            .catch(error => console.error(error));
+        return atributte;
     }
 
     const getUserAttributes = async () => {
@@ -135,7 +117,6 @@ export function AuthProvider({ children }: ChildrenProps) {
         return await new Promise((resolve, reject) => {
             user.getUserAttributes((error, result) => {
                 if (error) {
-                    console.error('failure: ', error);
                     reject(error);
                 }
                 resolve(result);
@@ -143,25 +124,9 @@ export function AuthProvider({ children }: ChildrenProps) {
         });
     }
 
-    const getSub = async () => {
-        let sub: string = "";
-        await getUserAttributes()
-            .then((data: CognitoUserAttribute[]) => data.filter((element) => element.Name === 'sub'))
-            .then((element) => sub = element[0].Value)
-            .catch(error => console.error(error));
-        return sub;
-    }
+    const getCognitoUser = (Username: string) => new CognitoUser({ Username, Pool });
 
-    const getName = async () => {
-        let name: string = "";
-        await getUserAttributes()
-            .then((data: CognitoUserAttribute[]) => data.filter((element) => element.Name === 'given_name'))
-            .then((element) => name = element[0].Value)
-            .catch(error => console.error(error));
-        return name;
-    }
-
-    const value = { user, login, logout, getSession, signUp, confirmCode, resendConfirmationCode, getSub, getName };
+    const value = { user, login, logout, getSession, signUp, confirmCode, resendConfirmationCode, getUserAttributeByName };
 
     return (
         <>

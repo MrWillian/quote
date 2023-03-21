@@ -3,22 +3,24 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { registerQuote } from "../../../lib/registerQuote";
 import { sanitizeQuoteDataToSave } from "../../../utils/sanitizeQuoteDataToSave";
 import { useQuoteRegisterForm } from "../../../hooks/useQuoteRegisterForm";
-import art from '../../../public/static/images/WriteDownBalloonArtwrite-down-baloon.png';
 import { SpinnerIcon } from "../../Icons";
+import { useTranslation } from "react-i18next";
+import art from '../../../public/static/images/WriteDownBalloonArtwrite-down-baloon.png';
 
 export const QuoteRegisterContainer = () => {
-    const { getSub } = useAuth();
+    const { getUserAttributeByName } = useAuth();
     const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useQuoteRegisterForm();
+    const { t } = useTranslation();
 
     const onSubmit = async (fields: any) => {
-        const sub = await getSub();
+        const sub = await getUserAttributeByName('sub');
         const data = await sanitizeQuoteDataToSave(fields, sub);
         const response = await registerQuote(data).then(response => response);
         if (response.status === '200') {
             reset();
-            alert('Sucesso...');
+            alert(t('common.success'));
         }
-        if (response.errorMessage) alert('Ocorreu um erro ao tentar salvar...');
+        if (response.errorMessage) alert(t('common.error_on_save'));
     }
 
     return (
@@ -33,24 +35,24 @@ export const QuoteRegisterContainer = () => {
             <div className="flex flex-col justify-start bg-accent-color rounded shadow-md">
                 <form className="mx-4 my-10" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col my-2">
-                        <label className="text-xl">Titúlo</label>
+                        <label className="text-xl">{t('common.title')}</label>
                         <input 
                             type="text" 
                             className={`text-xl text-black p-1 focus:outline-none ${errors.title && 'border-2 border-red-500'}`}
-                            placeholder="Defina um titúlo..."
+                            placeholder={t('common.define_title')}
                             {...register('title')}
                         />
                     </div>
                     <div className="flex flex-col my-2">
-                        <label className="text-xl">Descrição</label>
+                        <label className="text-xl">{t('common.description')}</label>
                         <textarea 
-                            placeholder="Defina uma descrição..."
+                            placeholder={t('common.define_description')}
                             className={`text-xl text-black p-1 ${errors.description && 'border-2 border-red-500'}`}
                             {...register('description')}
                         />
                     </div>
                     <div className="flex flex-col my-2">
-                        <label className="text-xl">Data</label>
+                        <label className="text-xl">{t('common.date')}</label>
                         <input 
                             type="date" 
                             className="text-xl p-1 text-black focus:outline-none" 

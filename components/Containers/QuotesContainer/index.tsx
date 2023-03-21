@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useQueryQuotes } from "../../../hooks/useQueryQuotes";
 import { deleteQuote } from "../../../lib/deleteQuote";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     filter?: string
@@ -10,6 +11,7 @@ export const QuotesContainer = ({ filter }: Props) => {
     const [scrollTopPosition, setScrollTopPosition] = useState(0);
     const containerRef = useRef<HTMLDivElement | null>(null);
     const { data, isLoading, error } = useQueryQuotes(filter);
+    const { t } = useTranslation();
 
     useEffect(() => {
         containerRef.current?.addEventListener('scroll', handleScroll, { passive: true });
@@ -27,24 +29,23 @@ export const QuotesContainer = ({ filter }: Props) => {
     const handleDelete = async (id: string) => {
         const result = await deleteQuote(id);
         if (result.status === '200') {
-            alert('Sucesso ao tentar deletar...');
+            alert(t('common.success_delete'));
         }
 
         if (result.errorMessage) {
-            alert('Ocorreu um erro ao tentar deletar...');
-            console.log(result.errorMessage);
+            alert(t('dashboard.error_on_delete'));
         }
     }
 
-    if (error) alert('Ocorreu um erro ao tentar carregar as lembranças...');
+    if (error) alert(t('dashboard.error_on_load'));
 
     return (
         <div 
             ref={containerRef}
-            className="flex flex-col relative justify-start no-scrollbar overflow-y-auto h-full bg-accent-color rounded divide-y divide-gray-500 shadow-md"
+            className="flex flex-col relative justify-start no-scrollbar overflow-y-auto h-1/3 bg-accent-color rounded divide-y divide-gray-500 shadow-md"
         >
-            {!isLoading ?
-                data !== undefined ? 
+            {!isLoading ? (
+                data.length > 0 ? 
                     data?.map(quote => (
                         <div className="flex justify-between hover:border-b-[1px]" key={quote.id}>
                             <div className='flex justify-center flex-col p-2'>
@@ -54,13 +55,14 @@ export const QuotesContainer = ({ filter }: Props) => {
                             <div className='flex flex-col justify-center p-2'>
                                 <h3>{quote.date}</h3>
                                 <button className='bg-primary-color rounded shadow' onClick={() => handleDelete(quote.id)}>
-                                    Excluir
+                                    {t('common.delete')}
                                 </button>
                             </div>
                         </div>
                     ))
-                : (<h1 className="p-4">Ainda não há nenhuma recordação, escreva uma agora mesmo...</h1>)
-                : (<p className="p-4">Carregando...</p>)
+                    : <h1 className="p-4">{t('common.no_memories')}</h1>
+                )
+                : (<p className="p-4">{t('common.loading')}</p>)
             }
             {data?.length > 6 && scrollTopPosition < 1 &&
                 <div className="flex w-full justify-center items-center">
