@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AWS SAM CLI file
+/public/static/images/AWS_SAM_CLI_64_PY3.msi

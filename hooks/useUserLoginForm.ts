@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { object, string } from "yup";
+import i18n from 'i18next';
 
 export type UserLoginProps = {
     email?: string;
@@ -8,8 +9,8 @@ export type UserLoginProps = {
 }
 
 let schema = object().shape({
-    email: string().required("O email é obrigatório").email("Digite um email válido"),
-    password: string().required("A senha é obrigatória").min(8),
+    email: string().required(i18n.t('forms.required_email')).email(i18n.t('forms.valid_email')),
+    password: string().required(i18n.t('forms.required_password')).min(8),
 });
 
 export const useUserLoginForm = () => useForm<UserLoginProps>({ 

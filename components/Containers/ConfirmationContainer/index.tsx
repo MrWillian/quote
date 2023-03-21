@@ -3,11 +3,13 @@ import { useCodeConfirmation } from "../../../contexts/CodeContext";
 import { useFocus } from "../../../hooks/useFocus";
 import { moveToNextInput } from "../../../utils/moveToNextInput";
 import { CodeInput } from "./CodeInput";
+import { useTranslation } from "react-i18next";
 
 export const ConfirmationContainer = () => {
     const { user, resendConfirmationCode } = useAuth();
     const { code, handleCode } = useCodeConfirmation();
     const [ inputRef ] = useFocus();
+    const { t } = useTranslation();
 
     const handleChange = (event) => {
         if (event.target.value === "" || /^[0-9\b]+$/.test(event.target.value)) {
@@ -19,9 +21,9 @@ export const ConfirmationContainer = () => {
 
     const handleResendConfirmationCode = () => {
         resendConfirmationCode(user.email).then((data) => {
-            alert('Sucesso! Verifique sua caixa de emails!!');
+            alert(t('confirm.success_resend'));
         }).catch((error) => {
-            alert(`Ocorreu algum erro... ${error.message ?? error}`);
+            alert(`${t('common.error_ocurred')} ${error.message ?? error}`);
         });
     }
 
@@ -41,8 +43,8 @@ export const ConfirmationContainer = () => {
                 <CodeInput name={'5'} value={code[5]} onChange={handleChange} />
             </div>
             <div className='flex items-center justify-center gap-2'>
-                <p>Não recebeu o código?</p>
-                <button type="button" className="underline" onClick={handleResendConfirmationCode}>Reenviar</button>
+                <p>{t('confirm.do_not_receive')}</p>
+                <button type="button" className="underline" onClick={handleResendConfirmationCode}>{t('confirm.resend')}</button>
             </div>
         </div>
     );

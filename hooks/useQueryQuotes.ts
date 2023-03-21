@@ -4,9 +4,9 @@ import { Quote } from "../interfaces/types";
 import { getQuotesList } from "../lib/listQuotes";
 
 export const useQueryQuotes = (filter) => {
-    const { getSub } = useAuth();
+    const { getUserAttributeByName } = useAuth();
     return useQuery<Quote[]>(['quotes', filter], async () => {
-        const sub = await getSub();
+        const sub = await getUserAttributeByName('sub');
         return await getQuotesList(sub).then(result => result.data);
     }, { 
         select: (quotes) => quotes.filter((quote) => filterBy(quote, filter)),

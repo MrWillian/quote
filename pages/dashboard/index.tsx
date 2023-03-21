@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { DashboardHeader, DashboardLayout, QuoteRegisterContainer, QuotesContainer, SearchButton } from '../../components';
+import { useTranslation } from "react-i18next";
 import { useDebounce } from '../../hooks/useDebounce';
 
 export default function Home() {
     const [filter, setFilter] = useState('');
+    const { t } = useTranslation();
     const debouncedFilter = useDebounce(filter, 500);
 
     return (
@@ -18,7 +20,7 @@ export default function Home() {
                                     <input 
                                         className="py-2 px-6 w-full text-white placeholder:text-white font-bold text-lg rounded shadow-2xl bg-accent-color focus:outline-none focus:bg-white focus:text-accent-color"
                                         type="text" 
-                                        placeholder="Pesquisar..."
+                                        placeholder={t('dashboard.search')}
                                         value={filter}
                                         onChange={(e) => setFilter(e.target.value)}
                                     />

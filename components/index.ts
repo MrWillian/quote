@@ -7,6 +7,7 @@ import { QuoteAppIcon } from './QuoteAppIcon';
 import { EmailInput, PasswordInput } from './Inputs';
 import { Layout, AuthLayout, DashboardLayout } from './Layouts';
 import { SpinnerIcon } from './Icons';
+import { LanguageSelector } from './LanguageSelector';
 
 export {
     Button,
@@ -25,5 +26,6 @@ export {
     Layout,
     AuthLayout,
     DashboardLayout,
-    SpinnerIcon
+    SpinnerIcon,
+    LanguageSelector
 };
