@@ -15,7 +15,9 @@
         "button_signin": "Sign In",
         "button_signup": "Sign Up",
         "button_cancel": "Cancel",
-        "button_verify": "Verify"
+        "button_verify": "Verify",
+        "english": "English",
+        "portuguese": "Portuguese"
     },
     "home": {
         "page_title": "Home",
