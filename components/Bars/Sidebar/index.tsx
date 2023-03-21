@@ -1,5 +1,5 @@
-import { QuoteAppIcon } from "../QuoteAppIcon";
-import { useAuth } from "../../contexts/AuthContext";
+import { QuoteAppIcon } from "../../QuoteAppIcon";
+import { useAuth } from "../../../contexts/AuthContext";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
