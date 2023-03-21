@@ -14,7 +14,7 @@ const IndexPage = () => {
           </h1>
           <h4>{t('home.by')}<span className="font-bold opacity-75 animate-ping drop-shadow-lg">Quote App</span></h4>
         </div>
-        <WriteDownContainer className="fixed right-0 w-full -bottom-40 h-2/4 animate-bounce" />
+        <WriteDownContainer className="fixed right-0 w-full -bottom-40 animate-bounce" height={300} width={400} />
       </div>
     </Layout>
   );
