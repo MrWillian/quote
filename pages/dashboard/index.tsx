@@ -31,7 +31,30 @@ export default function Home() {
                         <QuotesContainer filter={debouncedFilter} />
                     </div>
                     <QuoteRegisterContainer />
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2147711301878242"
+                        crossOrigin="anonymous"></script>
+                    <ins className="adsbygoogle"
+                        style={{display: 'block'}}
+                        data-ad-client="ca-pub-2147711301878242"
+                        data-ad-slot="8906500572"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2147711301878242"
+                    crossOrigin="anonymous">
+                </script>
+                <ins 
+                    className="adsbygoogle"
+                    style={{display:'inline-block', width:728, height:90}}
+                    data-ad-client="ca-pub-2147711301878242"
+                    data-ad-slot="3149393977">
+                </ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </DashboardLayout>
     );
