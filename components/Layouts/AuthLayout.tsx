@@ -14,6 +14,12 @@ const AuthLayout = ({ children, title }: Props) => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="shortcut icon" href={favicon.src} />
+      <script 
+        async 
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2147711301878242"
+        crossOrigin="anonymous"
+      >  
+      </script>
     </Head>
     <div className="grid h-screen place-items-center">
       {children}
