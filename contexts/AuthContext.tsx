@@ -14,6 +14,7 @@ const authContextDefaultValues: AuthContextType = {
     confirmCode: () => null,
     resendConfirmationCode: () => null,
     getUserAttributeByName: () => null,
+    deleteUser: () => null,
 };
 
 const AuthContext = createContext<AuthContextType>(authContextDefaultValues);
@@ -102,6 +103,17 @@ export function AuthProvider({ children }: ChildrenProps) {
         });
     }
 
+    const deleteUser = async (email: string) => {
+        return await new Promise((resolve, reject) => {
+            getCognitoUser(email).deleteUser((error, result) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(result);
+            });
+        });
+    }
+
     const getUserAttributeByName = async (name: string) => {
         let atributte: string = "";
         await getUserAttributes()
@@ -126,7 +138,7 @@ export function AuthProvider({ children }: ChildrenProps) {
 
     const getCognitoUser = (Username: string) => new CognitoUser({ Username, Pool });
 
-    const value = { user, login, logout, getSession, signUp, confirmCode, resendConfirmationCode, getUserAttributeByName };
+    const value = { user, login, logout, getSession, signUp, confirmCode, resendConfirmationCode, getUserAttributeByName, deleteUser };
 
     return (
         <>

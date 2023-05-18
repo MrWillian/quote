@@ -23,6 +23,8 @@ export const Button = ({ buttonType, isSubmitting }: Props) => {
         return t('common.button_cancel');
       case ButtonType.Verify:
         return t('common.button_verify');
+      case ButtonType.Delete:
+        return t('common.button_delete');
     }
   }
 

@@ -10,4 +10,5 @@ export type AuthContextType = {
     confirmCode: (email: string, confirmationCode: string) => Promise<unknown>;
     resendConfirmationCode: (email: string) => Promise<unknown>;
     getUserAttributeByName: (name: string) => Promise<string>;
+    deleteUser: (email: string) => Promise<unknown>;
 };
