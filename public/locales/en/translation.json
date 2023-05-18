@@ -24,7 +24,8 @@
         "title": "Do Not Forget Anymore!",
         "by": "by ",
         "contact": "Contact",
-        "faq": "FAQ"
+        "faq": "FAQ",
+        "privacy_policy": "Privacy Policy"
     },
     "contact": {
         "page_title": "Contact",
@@ -92,5 +93,9 @@
         "logout": "Log out",
         "error_on_delete": "An error ocurred when trying to delete...",
         "error_on_load": "An error ocurred when trying to load the quotes..."
+    },
+    "privacy": {
+        "page_title": "Privacy Policy",
+        "title": "Privacy Policy"
     }
 }
