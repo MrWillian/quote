@@ -13,9 +13,13 @@ export const MainBar = () => {
             <Link href="/">
                 <QuoteAppIcon />
             </Link>
-            <div className="flex justify-around items-center w-1/2">
+            <div className="flex items-center justify-around w-1/2">
                 <Link href="/contact" className={`hover:underline ${router.pathname === '/contact' && 'underline'}`}>{t('home.contact')}</Link>
-                <Link href="/faq" className={`hover:underline ${router.pathname === '/faq' && 'underline'}`}>{t('home.faq')}</Link>
+                <div className="flex items-center justify-between gap-2">    
+                    <Link href="/faq" className={`hover:underline ${router.pathname === '/faq' && 'underline'}`}>{t('home.faq')}</Link>
+                    <span className="font-thin">{'|'}</span>
+                    <Link href="/privacy" className={`hover:underline ${router.pathname === '/privacy' && 'underline'}`}>{t('home.privacy_policy')}</Link>
+                </div>
                 <div className="flex items-center justify-between gap-2">
                     <Link href="/auth/login" className="hover:underline">{t('common.button_signin')}</Link>
                     <span className="font-thin">{'|'}</span>

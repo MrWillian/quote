@@ -24,7 +24,8 @@
         "title": "Não se esqueça mais!",
         "by": "por ",
         "contact": "Contato",
-        "faq": "FAQ"
+        "faq": "FAQ",
+        "privacy_policy": "Política de Privacidade"
     },
     "contact": {
         "page_title": "Contato",
@@ -92,5 +93,9 @@
         "logout": "Sair",
         "error_on_delete": "Ocorreu um erro ao tentar deletar...",
         "error_on_load": "Ocorreu um erro ao tentar carregar as lembranças..."
+    },
+    "privacy": {
+        "page_title": "Política de Privacidade",
+        "title": "Política de Privacidade"
     }
 }
