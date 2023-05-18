@@ -16,6 +16,7 @@
         "button_signup": "Registrar",
         "button_cancel": "Cancelar",
         "button_verify": "Verificar",
+        "button_delete": "Deletar",
         "english": "Inglês",
         "portuguese": "Português"
     },
@@ -97,5 +98,10 @@
     "privacy": {
         "page_title": "Política de Privacidade",
         "title": "Política de Privacidade"
+    },
+    "delete": {
+        "page_title": "Deletar",
+        "title": "Hey, olá!!",
+        "subtitle": "Você realmente deseja deletar sua conta? Então, entre com seus dados pessoais, por favor..."
     }
 }
