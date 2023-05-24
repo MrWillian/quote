@@ -9,12 +9,16 @@ import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import LanguageDetector from "i18next-browser-languagedetector";
 import resources from '../public/locales/resources.js';
+import {Amplify} from 'aws-amplify';
+import awsconfig from '../aws-exports.js';
 import '../styles/index.css';
 
 var detectionOptions = {
   order: ["navigator", "queryString", "path", "cookie"],
   caches: []
 };
+
+Amplify.configure(awsconfig);
 
 i18next.use(LanguageDetector).init({
   resources,
