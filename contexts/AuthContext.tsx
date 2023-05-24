@@ -122,15 +122,20 @@ export function AuthProvider({ children }: ChildrenProps) {
         });
     }
 
-    const deleteUser = async (email: string) => {
-        return await new Promise((resolve, reject) => {
-            getCognitoUser(email).deleteUser((error, result) => {
-                if (error) {
-                    reject(error);
+    const deleteUser = async () => {
+        try {
+            await Auth.deleteUser();
+            return {
+                type: 'success', message: i18n.t('confirm.success')
+            }
+        } catch (error) {
+            return {
+                type: 'error',
+                error: {
+                    message: i18n.t('forms.error')
                 }
-                resolve(result);
-            });
-        });
+            }
+        }
     }
 
     const getUserAttributeByName = async (name: string) => {
