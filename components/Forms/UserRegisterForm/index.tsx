@@ -1,4 +1,3 @@
-import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -22,18 +21,13 @@ export const UserRegisterForm = () => {
     }, [setFocus]);
 
     const onSubmit: SubmitHandler<UserRegisterProps> = async ({ givenName, email, password }) => {
-        let givenNameAttribute: CognitoUserAttribute = new CognitoUserAttribute({
-            Name: 'given_name', Value: givenName 
-        });
-        let emailAttribute: CognitoUserAttribute = new CognitoUserAttribute({ 
-            Name: 'email', Value: email 
-        });
-
-        await signUp(email, password, [givenNameAttribute, emailAttribute]).then((data) => {
+        const result = await signUp(email, password, givenName);
+        if (result.type === "success") {
             router.push('/auth/confirm');
-        }).catch((error) => {
-            console.error("Error", error);
-        });
+            return;
+        }
+        alert(result.error);
+        console.error("Error", result.error);
     }
 
     return (
