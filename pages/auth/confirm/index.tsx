@@ -26,20 +26,20 @@ const Confirm = () => {
         }
     }, []);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const code = getCode();
         setIsSubmitting(true);
-
-        confirmCode(user.email, code).then((data) => {
+        const result = await confirmCode(user.email, code);
+        if (result.type === 'success') {
             alert(t('confirm.success'));
             setIsSubmitting(false);
             clearCode();
-            router.push('/auth/login');
-        }).catch((error) => {
-            alert(`${t('common.error_ocurred')} ${error.message ?? error}`);
-            setIsSubmitting(false);
-        });
+            router.push('/dashboard');
+            return;
+        }
+        alert(`${t('common.error_ocurred')} ${result.error.message ?? result.error}`);
+        setIsSubmitting(false);
     }
 
     return (
