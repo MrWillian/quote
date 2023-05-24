@@ -28,7 +28,6 @@ export function useAuth() {
 export function AuthProvider({ children }: ChildrenProps) {
     const [user, setUser] = useState<User>({});
 
-    
     const login = async (Username: string, Password: string) => {
         try {
             const authenticatedUser = await Auth.signIn(Username, Password);
@@ -54,17 +53,25 @@ export function AuthProvider({ children }: ChildrenProps) {
         }
     };
 
-    const signUp = async (email: string, password: string, userAttributes: CognitoUserAttribute[]) => {
-        return await new Promise((resolve, reject) => {
-            Pool.signUp(email, password, userAttributes, null, (err, data) => {
-                if (err) {
-                    reject(err);
-                }
-                const user = { name: userAttributes['given_name'], email: email }
-                setUser(user);
-                resolve(data);
+    const signUp = async (email: string, password: string, givenName: string) => {
+        try {
+            const {user: authenticatedUser} = await Auth.signUp({
+                username: email,
+                password,
+                attributes: {
+                  email,
+                  given_name: givenName,
+                },
+                autoSignIn: {
+                  enabled: true,
+                },
             });
-        });
+            const user = { name: givenName, email: email };
+            setUser(user);
+            return { type: 'success', authenticatedUser };
+        } catch (error) {
+            return { type: 'error', error};
+        }
     }
 
     const getSession = async (user = Pool.getCurrentUser()) => {
@@ -91,14 +98,17 @@ export function AuthProvider({ children }: ChildrenProps) {
     };
 
     const confirmCode = async (email: string, confirmationCode: string) => {
-        return await new Promise((resolve, reject) => {
-            getCognitoUser(email).confirmRegistration(confirmationCode, false, (error, result) => {
-                if (error) {
-                    reject(error);
+        try {
+            await Auth.confirmSignUp(email, confirmationCode);
+            return {type: 'success'};
+        } catch (error) {
+            return {
+                type: 'error',
+                error: {
+                    message: i18n.t('error_on_confirm_signup'),
                 }
-                resolve(result);
-            });
-        });
+            };
+        }
     }
 
     const resendConfirmationCode = async (email: string) => {
