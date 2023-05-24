@@ -45,7 +45,7 @@ export const QuotesContainer = ({ filter }: Props) => {
             className="flex flex-col relative justify-start no-scrollbar overflow-y-auto h-1/3 bg-accent-color rounded divide-y divide-gray-500 shadow-md"
         >
             {!isLoading ? (
-                data.length > 0 ? 
+                data?.length > 0 ? 
                     data?.map(quote => (
                         <div className="flex justify-between hover:border-b-[1px]" key={quote.id}>
                             <div className='flex justify-center flex-col p-2'>
