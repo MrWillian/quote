@@ -3,7 +3,7 @@ import { User } from "../../interfaces";
 
 export type AuthContextType = {
     user: User;
-    login: (Username: string, Password: string) => Promise<unknown>;
+    login: (Username: string, Password: string) => Promise<any>;
     logout: () => void;
     signUp: (email: string, password: string, userAttributes: CognitoUserAttribute[]) => Promise<unknown>;
     getSession: () => Promise<unknown>;
