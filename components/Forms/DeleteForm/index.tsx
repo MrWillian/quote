@@ -31,11 +31,12 @@ export const DeleteForm = () => {
     }
 
     const handleDelete = async (data: any) => {
-        await deleteUser(data.email).then(() => {
-            alert('Succesfull!!!');
-        }).catch((error) => {
-            console.error(error);
-        });
+        const result = await deleteUser();
+        if (result.type === 'success') {
+            alert(result.message);
+            return;
+        }
+        alert(result.error.message);
     }
 
     return (
