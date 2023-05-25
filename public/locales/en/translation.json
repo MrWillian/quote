@@ -93,7 +93,8 @@
         "home": "Home",
         "logout": "Log out",
         "error_on_delete": "An error ocurred when trying to delete...",
-        "error_on_load": "An error ocurred when trying to load the quotes..."
+        "error_on_load": "An error ocurred when trying to load the quotes...",
+        "menu": "Home"
     },
     "privacy": {
         "page_title": "Privacy Policy",

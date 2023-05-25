@@ -93,7 +93,8 @@
         "home": "Início",
         "logout": "Sair",
         "error_on_delete": "Ocorreu um erro ao tentar deletar...",
-        "error_on_load": "Ocorreu um erro ao tentar carregar as lembranças..."
+        "error_on_load": "Ocorreu um erro ao tentar carregar as lembranças...",
+        "menu": "Início"
     },
     "privacy": {
         "page_title": "Política de Privacidade",
