@@ -42,18 +42,18 @@ export const QuotesContainer = ({ filter }: Props) => {
     return (
         <div 
             ref={containerRef}
-            className="flex flex-col relative justify-start no-scrollbar overflow-y-auto h-1/3 bg-accent-color rounded divide-y divide-gray-500 shadow-md"
+            className="flex flex-col relative justify-start no-scrollbar overflow-y-auto h-full bg-accent-color rounded divide-y divide-gray-500 shadow-md"
         >
             {!isLoading ? (
                 data?.length > 0 ? 
                     data?.map(quote => (
-                        <div className="flex justify-between hover:border-b-[1px]" key={quote.id}>
-                            <div className='flex justify-center flex-col p-2'>
+                        <div className="flex justify-between items-center hover:border-b-[1px]" key={quote.id}>
+                            <div className='flex justify-center flex-col p-2 w-4/5'>
                                 <h1 className="text-xl font-black">{quote.title}</h1>
                                 <h3>{quote.description}</h3>
                             </div>
-                            <div className='flex flex-col justify-center p-2'>
-                                <h3>{quote.date}</h3>
+                            <div className='flex flex-col justify-between p-2'>
+                                <h3 className="text-xs self-center w-1/2">{quote.date}</h3>
                                 <button className='bg-primary-color rounded shadow' onClick={() => handleDelete(quote.id)}>
                                     {t('common.delete')}
                                 </button>
