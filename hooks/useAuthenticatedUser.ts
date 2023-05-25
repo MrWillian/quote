@@ -3,7 +3,7 @@ import { Auth } from "aws-amplify";
 import { useState, useEffect } from "react";
 
 const useAuthenticatedUser = () => {
-    const [authenticatedUser, setAuthenticatedUser] = useState<CognitoAccessToken['payload']>();
+    const [authenticatedUser, setAuthenticatedUser] = useState<any>();
     const [hasAuthenticatedUser, setHasAuthenticatedUser] = useState<boolean>(false);
 
     useEffect(() => {
