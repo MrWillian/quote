@@ -8,9 +8,9 @@ export const Sidebar = () => {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const handleLogout = () => {
-    logout();
-    router.replace('/auth/login');
+  const handleLogout = async () => {
+    const response = await logout();
+    if (response) router.replace('/auth/login');
   }
 
   return (

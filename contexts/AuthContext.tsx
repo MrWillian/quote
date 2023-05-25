@@ -10,7 +10,7 @@ import i18n from 'i18next';
 const authContextDefaultValues: AuthContextType = {
     user: null,
     login: () => null,
-    logout: () => {},
+    logout: () => null,
     signUp: () => null,
     getSession: () => null,
     confirmCode: () => null,
@@ -90,10 +90,12 @@ export function AuthProvider({ children }: ChildrenProps) {
         });
     }
 
-    const logout = () => {
-        const user = Pool.getCurrentUser();
-        if (user) {
-            user.signOut();
+    const logout = async () => {
+        try {
+            await Auth.signOut();
+            return true;
+        } catch (error) {
+            return false;
         }
     };
 
