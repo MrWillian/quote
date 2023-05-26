@@ -1,13 +1,14 @@
 import { useQuery } from "react-query";
-import { useAuth } from "../contexts/AuthContext";
 import { Quote } from "../interfaces/types";
 import { getQuotesList } from "../lib/listQuotes";
+import useAuthenticatedUser from "./useAuthenticatedUser";
 
 export const useQueryQuotes = (filter) => {
-    const { getUserAttributeByName } = useAuth();
+    const [authenticatedUser] = useAuthenticatedUser();
+ 
     return useQuery<Quote[]>(['quotes', filter], async () => {
-        const sub = await getUserAttributeByName('sub');
-        return await getQuotesList(sub).then(result => result.data);
+        const username = authenticatedUser?.username;
+        return await getQuotesList(username).then(result => result.data);
     }, { 
         select: (quotes) => quotes.filter((quote) => filterBy(quote, filter)),
     });

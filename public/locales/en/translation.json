@@ -59,7 +59,7 @@
         "page_title": "Confirm the code",
         "title": "Please, check your email!!",
         "subtitle": "We send a email to",
-        "success": "Success! You can Sign In now!!",
+        "success": "Success!",
         "success_resend": "Success! Check your email!",
         "do_not_receive": "Do not receive the code?",
         "resend": "Resend"
@@ -93,7 +93,8 @@
         "home": "Home",
         "logout": "Log out",
         "error_on_delete": "An error ocurred when trying to delete...",
-        "error_on_load": "An error ocurred when trying to load the quotes..."
+        "error_on_load": "An error ocurred when trying to load the quotes...",
+        "menu": "Home"
     },
     "privacy": {
         "page_title": "Privacy Policy",
