@@ -1,47 +1,67 @@
-# TypeScript Next.js example
+![](https://img.shields.io/github/languages/top/MrWillian/quote)![](https://img.shields.io/snyk/vulnerabilities/github/MrWillian/quote)[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-This is a really simple project that shows the usage of Next.js with TypeScript
+# Quote App
 
-## Deploy your own
+Who never forgot where they kept a key, a specific outfit, an item that made them lose their hair after looking everywhere? Be it at any age, we always forget where we put things for a variable time interval.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript).
+That's why the Quote App is here to solve your problems, because you'll have all the necessary information in the palm of your hand so that you know exactly where your spare car key is, or where you put that pair of socks used in situations very rare.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+In addition to the app, we have an online platform, so you can access from anywhere.
 
-## How to use it?
+![Production](https://quote-remember.vercel.app)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Demo
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-```
+![Web - Sign In](https://github.com/MrWillian/quote/assets/50757994/b9f25628-ff13-43bc-b52c-4da997e93932)
+![Web - Sign Up](https://github.com/MrWillian/quote/assets/50757994/6f7d2109-489b-43a6-b653-f9666fa1d86f)
+![Web - Home](https://github.com/MrWillian/quote/assets/50757994/0ca22e92-0c4f-4399-87e5-c3e53551213f)
+![Web - Home (Search)](https://github.com/MrWillian/quote/assets/50757994/b680ece2-2c12-4662-9626-f606bda0d03b)
 
-```bash
-yarn create next-app --example with-typescript with-typescript-app
-```
 
-```bash
-pnpm create next-app --example with-typescript with-typescript-app
-```
+## Tech Stack
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+* NextJS
+* ReactJS
+* ContextApi
+* ReactQuery
+* ReactHookForm 
+* Jest
+* i18next
+* react-i18next
+* TailwindCSS
 
-## Notes
+* Aws Cognito
+* Aws Amplify
+* Aws Api Gateway
+* Lambda Functions
+* DynamoDB
+* Vercel
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
+![](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 
-```
-npm install --save-dev typescript
-```
+![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+![](https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=React_Query&logoColor=white)
 
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
+![](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+![](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+![](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+
+## Authors
+
+Willian Marciel Soares dos Santos (Frontend Developer)
+
+- [Github](github-url)
+
+- [Linkedin](linkedin-url)
+
+- [Portfolio](portfolio-url)
+
+
+[linkedin-url]: https://www.linkedin.com/in/willian-marciel/
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[github-url]: https://www.github.com/MrWillian
+[portfolio-url]: http://willianmarciel.vercel.app/
