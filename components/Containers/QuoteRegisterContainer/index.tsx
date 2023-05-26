@@ -5,16 +5,17 @@ import { sanitizeQuoteDataToSave } from "../../../utils/sanitizeQuoteDataToSave"
 import { useQuoteRegisterForm } from "../../../hooks/useQuoteRegisterForm";
 import { SpinnerIcon } from "../../Icons";
 import { useTranslation } from "react-i18next";
+import useAuthenticatedUser from "../../../hooks/useAuthenticatedUser";
 import art from '../../../public/static/images/WriteDownBalloonArtwrite-down-baloon.png';
 
 export const QuoteRegisterContainer = () => {
-    const { getUserAttributeByName } = useAuth();
     const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useQuoteRegisterForm();
     const { t } = useTranslation();
+    const [authenticatedUser] = useAuthenticatedUser();
 
     const onSubmit = async (fields: any) => {
-        const sub = await getUserAttributeByName('sub');
-        const data = await sanitizeQuoteDataToSave(fields, sub);
+        const username = authenticatedUser?.username;
+        const data = await sanitizeQuoteDataToSave(fields, username);
         const response = await registerQuote(data).then(response => response);
         if (response.status === '200') {
             reset();
@@ -24,21 +25,21 @@ export const QuoteRegisterContainer = () => {
     }
 
     return (
-        <div className='flex flex-col w-1/4 py-6 px-4'>
-            <div className='flex justify-center relative'>
+        <div className='flex flex-col w-1/4 px-4 py-6'>
+            <div className='relative flex justify-center'>
                 <Image 
                     className='absolute -top-10 w-3/4 md:-top-4 lg:-top-6 2xl:w-2/4 min-[2560px]:w-1/4'
                     src={art} 
                     alt="Write Down Ballon" 
                 />
             </div>
-            <div className="flex flex-col justify-start bg-accent-color rounded shadow-md">
+            <div className="flex flex-col justify-start rounded shadow-md bg-accent-color">
                 <form className="mx-4 my-10" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col my-2">
                         <label className="text-xl">{t('common.title')}</label>
                         <input 
                             type="text" 
-                            className={`text-xl text-black p-1 focus:outline-none ${errors.title && 'border-2 border-red-500'}`}
+                            className={`text-sm text-black p-1 focus:outline-none ${errors.title && 'border-2 border-red-500'}`}
                             placeholder={t('common.define_title')}
                             {...register('title')}
                         />
@@ -47,7 +48,8 @@ export const QuoteRegisterContainer = () => {
                         <label className="text-xl">{t('common.description')}</label>
                         <textarea 
                             placeholder={t('common.define_description')}
-                            className={`text-xl text-black p-1 ${errors.description && 'border-2 border-red-500'}`}
+                            rows={4}
+                            className={`text-sm text-black p-1 ${errors.description && 'border-2 border-red-500'}`}
                             {...register('description')}
                         />
                     </div>
@@ -55,15 +57,15 @@ export const QuoteRegisterContainer = () => {
                         <label className="text-xl">{t('common.date')}</label>
                         <input 
                             type="date" 
-                            className="text-xl p-1 text-black focus:outline-none" 
+                            className="p-1 text-xl text-black focus:outline-none" 
                             {...register('date')}
                         />
                     </div>
 
-                    <div className="flex w-full justify-center items-center">
+                    <div className="flex items-center justify-center w-full">
                         <button 
                             type="submit"
-                            className="mt-6 z-90 bg-primary-color w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:drop-shadow-2xl hover:animate-bounce"
+                            className="flex items-center justify-center w-20 h-20 mt-6 text-4xl text-white rounded-full z-90 bg-primary-color drop-shadow-lg hover:drop-shadow-2xl hover:animate-bounce"
                             disabled={isSubmitting}
                         >
                             {!isSubmitting ? <span className="w-20">&#43;</span> : <SpinnerIcon color="#5C5091" />}
