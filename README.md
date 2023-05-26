@@ -8,7 +8,7 @@ That's why the Quote App is here to solve your problems, because you'll have all
 
 In addition to the app, we have an online platform, so you can access from anywhere.
 
-(https://quote-remember.vercel.app)
+Link: https://quote-remember.vercel.app
 
 ## Demo
 
