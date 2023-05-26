@@ -52,9 +52,9 @@ export const QuotesContainer = ({ filter }: Props) => {
                                 <h1 className="text-xl font-black">{quote.title}</h1>
                                 <h3>{quote.description}</h3>
                             </div>
-                            <div className='flex flex-col justify-between p-2'>
+                            <div className='flex flex-col justify-between p-2 w-1/5'>
                                 <h3 className="text-xs self-center w-1/2">{quote.date}</h3>
-                                <button className='bg-primary-color rounded shadow' onClick={() => handleDelete(quote.id)}>
+                                <button className='text-xs bg-primary-color rounded shadow' onClick={() => handleDelete(quote.id)}>
                                     {t('common.delete')}
                                 </button>
                             </div>
