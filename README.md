@@ -54,14 +54,8 @@ Link: https://quote-remember.vercel.app
 
 Willian Marciel Soares dos Santos (Frontend Developer)
 
-- [Github](github-url)
+- [Github](https://www.github.com/MrWillian)
 
-- [Linkedin](linkedin-url)
+- [Linkedin](https://www.linkedin.com/in/willian-marciel/)
 
-- [Portfolio](portfolio-url)
-
-
-[linkedin-url]: https://www.linkedin.com/in/willian-marciel/
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[github-url]: https://www.github.com/MrWillian
-[portfolio-url]: http://willianmarciel.vercel.app/
+- [Portfolio](http://willianmarciel.vercel.app/)
