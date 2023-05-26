@@ -59,7 +59,7 @@
         "page_title": "Confirme o código",
         "title": "Por favor, cheque seu email!!",
         "subtitle": "Nós enviamos um email para",
-        "success": "Sucesso! Você pode entrar agora!!",
+        "success": "Sucesso!",
         "success_resend": "Sucesso! Cheque seu email!",
         "do_not_receive": "Não recebeu o código?",
         "resend": "Reenviar"
@@ -93,7 +93,8 @@
         "home": "Início",
         "logout": "Sair",
         "error_on_delete": "Ocorreu um erro ao tentar deletar...",
-        "error_on_load": "Ocorreu um erro ao tentar carregar as lembranças..."
+        "error_on_load": "Ocorreu um erro ao tentar carregar as lembranças...",
+        "menu": "Início"
     },
     "privacy": {
         "page_title": "Política de Privacidade",
