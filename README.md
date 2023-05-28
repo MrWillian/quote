@@ -1,6 +1,6 @@
 ![](https://img.shields.io/github/languages/top/MrWillian/quote)![](https://img.shields.io/snyk/vulnerabilities/github/MrWillian/quote)[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-# Quote App
+# Quote App - WEB
 
 Who never forgot where they kept a key, a specific outfit, an item that made them lose their hair after looking everywhere? Be it at any age, we always forget where we put things for a variable time interval.
 
