@@ -4,11 +4,14 @@ import { getQuotesList } from "../lib/listQuotes";
 import useAuthenticatedUser from "./useAuthenticatedUser";
 
 export const useQueryQuotes = (filter) => {
-    const [authenticatedUser] = useAuthenticatedUser();
+    const [_, getUserId] = useAuthenticatedUser();
  
     return useQuery<Quote[]>(['quotes', filter], async () => {
-        const username = authenticatedUser?.username;
-        return await getQuotesList(username).then(result => result.data);
+        const username = await getUserId().then(result => result);
+        const list = await getQuotesList(username).then(result => result.data).catch(err => {
+            console.error(err);
+        });
+        return list; 
     }, { 
         select: (quotes) => quotes.filter((quote) => filterBy(quote, filter)),
     });
