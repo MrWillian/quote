@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useAuth } from "../../../contexts/AuthContext";
 import { registerQuote } from "../../../lib/registerQuote";
 import { sanitizeQuoteDataToSave } from "../../../utils/sanitizeQuoteDataToSave";
 import { useQuoteRegisterForm } from "../../../hooks/useQuoteRegisterForm";
@@ -11,10 +10,10 @@ import art from '../../../public/static/images/WriteDownBalloonArtwrite-down-bal
 export const QuoteRegisterContainer = () => {
     const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useQuoteRegisterForm();
     const { t } = useTranslation();
-    const [authenticatedUser] = useAuthenticatedUser();
+    const [_, getUserId] = useAuthenticatedUser();
 
     const onSubmit = async (fields: any) => {
-        const username = authenticatedUser?.username;
+        const username = await getUserId().then(result => result);
         const data = await sanitizeQuoteDataToSave(fields, username);
         const response = await registerQuote(data).then(response => response);
         if (response.status === '200') {
