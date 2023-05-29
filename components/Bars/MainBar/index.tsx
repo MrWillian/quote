@@ -9,7 +9,7 @@ import { LanguageSelector } from "../../LanguageSelector";
 export const MainBar = () => {
     const router = useRouter();
     const { t } = useTranslation();
-    const [_, hasAuthenticatedUser] = useAuthenticatedUser();
+    const [hasAuthenticatedUser] = useAuthenticatedUser();
 
     useEffect(() => {
         if (hasAuthenticatedUser) router.push('/dashboard');

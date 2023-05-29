@@ -1,9 +1,7 @@
-import { CognitoAccessToken } from "amazon-cognito-identity-js";
 import { Auth } from "aws-amplify";
 import { useState, useEffect } from "react";
 
 const useAuthenticatedUser = () => {
-    const [authenticatedUser, setAuthenticatedUser] = useState<any>();
     const [hasAuthenticatedUser, setHasAuthenticatedUser] = useState<boolean>(false);
 
     useEffect(() => {
@@ -14,14 +12,25 @@ const useAuthenticatedUser = () => {
         try {
             const currentSession = await Auth.currentSession();
             const user = currentSession.getAccessToken().payload;
-            setAuthenticatedUser(user);
-            setHasAuthenticatedUser(true)
+            if (user) {
+                setHasAuthenticatedUser(true)
+            }
         } catch (error) {
             return null;
         }
     }
 
-    return [authenticatedUser, hasAuthenticatedUser];
+    const getUserId = async () => {
+        try {
+            const currentSession = await Auth.currentSession();
+            const user = currentSession.getAccessToken().payload;
+            return user.username;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    return [hasAuthenticatedUser, getUserId] as const;
 }
 
 export default useAuthenticatedUser;

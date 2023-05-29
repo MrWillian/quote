@@ -44,8 +44,9 @@ export const QuotesContainer = ({ filter }: Props) => {
             ref={containerRef}
             className="flex flex-col relative justify-start no-scrollbar overflow-y-auto h-full bg-accent-color rounded divide-y divide-gray-500 shadow-md"
         >
-            {!isLoading ? (
-                data?.length > 0 ? 
+            {isLoading ? 
+                <p className="p-4">{t('common.loading')}</p>
+                : (data?.length > 0 ? 
                     data?.map(quote => (
                         <div className="flex justify-between items-center hover:border-b-[1px]" key={quote.id}>
                             <div className='flex justify-center flex-col p-2 w-4/5'>
@@ -62,7 +63,6 @@ export const QuotesContainer = ({ filter }: Props) => {
                     ))
                     : <h1 className="p-4">{t('common.no_memories')}</h1>
                 )
-                : (<p className="p-4">{t('common.loading')}</p>)
             }
             {data?.length > 6 && scrollTopPosition < 1 &&
                 <div className="flex w-full justify-center items-center">
