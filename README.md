@@ -33,7 +33,6 @@ Link: https://quote-remember.vercel.app
 * i18next
 * react-i18next
 * TailwindCSS
-
 * Aws Cognito
 * Aws Amplify
 * Aws Api Gateway
