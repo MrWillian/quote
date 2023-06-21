@@ -6,7 +6,7 @@ Who never forgot where they kept a key, a specific outfit, an item that made the
 
 That's why the Quote App is here to solve your problems, because you'll have all the necessary information in the palm of your hand so that you know exactly where your spare car key is, or where you put that pair of socks used in situations very rare.
 
-In addition to the app, we have an online platform, so you can access from anywhere.
+In addition to the app, we have an online platform, so you can access from anywhere!
 
 Link: https://quote-remember.vercel.app
 
